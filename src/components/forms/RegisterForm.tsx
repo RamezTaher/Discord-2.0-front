@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import {
   InputField,
   InputContainer,
@@ -9,8 +10,12 @@ import {
 import styles from "./index.module.scss"
 
 const RegisterForm = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log("hello from register")
+  }
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <FormTitle>Create an account</FormTitle>
       <InputContainer>
         <InputLabel htmlFor="email">Email</InputLabel>
@@ -36,6 +41,9 @@ const RegisterForm = () => {
         <InputField id="password" type="password" />
       </InputContainer>
       <Button>Continue</Button>
+      <Link to="/login" className={styles.exitedUser}>
+        Already have an account?
+      </Link>
     </form>
   )
 }

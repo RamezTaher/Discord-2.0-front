@@ -1,7 +1,7 @@
 form {
   width: 600px;
   background-color: #36393f;
-  padding: 55px 35px !important;
+  padding: 45px 35px !important;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -15,5 +15,16 @@ form {
   gap: 20px;
   & > * {
     width: 100%;
+  }
+}
+
+.exitedUser {
+  color: #079eda;
+  font-size: 14px;
+  margin-top: -7px;
+  cursor: pointer;
+  width: fit-content;
+  &:hover {
+    text-decoration: underline;
   }
 }

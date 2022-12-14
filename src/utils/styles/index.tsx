@@ -36,6 +36,12 @@ export const Button = styled.button`
   outline: 0;
   padding: 14px 0;
   font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all ease 0.3;
+  &:hover {
+    background-color: #4752c4;
+  }
 `
 
 export const Page = styled.div`

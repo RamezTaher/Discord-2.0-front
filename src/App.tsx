@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import LogIn from "./pages/LogIn"
 import Register from "./pages/Register"
+import "./styles/main.scss"
 function App() {
   return (
     <>

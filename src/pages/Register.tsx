@@ -1,11 +1,13 @@
 import React from "react"
 import RegisterForm from "../components/forms/RegisterForm"
+import { Page } from "../utils/styles"
 
 const Register = () => {
   return (
     <>
-      <h1>Register</h1>
-      <RegisterForm />
+      <Page>
+        <RegisterForm />
+      </Page>
     </>
   )
 }

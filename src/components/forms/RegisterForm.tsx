@@ -1,4 +1,5 @@
 import React from "react"
+import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 import {
   InputField,
@@ -10,35 +11,70 @@ import {
 import styles from "./index.module.scss"
 
 const RegisterForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const submitHundler = () => {
     console.log("hello from register")
   }
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit(submitHundler)}>
       <FormTitle>Create an account</FormTitle>
       <InputContainer>
         <InputLabel htmlFor="email">Email</InputLabel>
-        <InputField id="email" type="email" />
+        <InputField
+          id="email"
+          type="email"
+          {...register("email", {
+            required: "Email is required",
+          })}
+        />
       </InputContainer>
       <section className={styles.nameSection}>
         <InputContainer>
           <InputLabel htmlFor="firstname">First Name</InputLabel>
-          <InputField id="firstname" type="text" />
+          <InputField
+            id="firstname"
+            type="text"
+            {...register("firstname", {
+              required: "First Name is required",
+            })}
+          />
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="lastname">Last Name</InputLabel>
-          <InputField id="lastname" type="text" />
+          <InputField
+            id="lastname"
+            type="text"
+            {...register("lastname", {
+              required: "Last Name is required",
+            })}
+          />
         </InputContainer>
       </section>
       <InputContainer>
         <InputLabel htmlFor="username">Username</InputLabel>
-        <InputField id="username" type="text" />
+        <InputField
+          id="username"
+          type="text"
+          {...register("username", {
+            required: "Username is required",
+          })}
+        />
       </InputContainer>
 
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField id="password" type="password" />
+        <InputField
+          id="password"
+          type="password"
+          {...register("password", {
+            required: "Password is required",
+          })}
+        />
       </InputContainer>
       <Button>Continue</Button>
       <Link to="/login" className={styles.exitedUser}>

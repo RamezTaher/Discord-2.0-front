@@ -17,8 +17,8 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm()
 
-  const submitHundler = () => {
-    console.log("hello from register")
+  const submitHundler = (data: any) => {
+    console.log(data)
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHundler)}>

@@ -17,7 +17,8 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm()
 
-  const submitHundler = () => {
+  const submitHundler = (data: any) => {
+    console.log(data)
     console.log("hello from register")
   }
   return (

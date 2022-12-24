@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { PageProps } from "./styleTypes"
 
 export const InputField = styled.input`
   background: #202225;
@@ -44,10 +45,40 @@ export const Button = styled.button`
   }
 `
 
-export const Page = styled.div`
+export const Page = styled.div<PageProps>`
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #5865f2;
+  display: ${(props) => props.display};
+  justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
+  background-color: ${(props) => props.backgoundColor};
+`
+
+export const ChatSidebarStyle = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  padding: 15px;
+  background-color: #2f3136;
+  color: #96989d;
+  & header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    & h1 {
+      font-weight: 500px;
+    }
+  }
+`
+export const ChannelStyle = styled.section`
+  height: 100%;
+  margin-left: 300px;
+  background-color: #36393f;
+`
+export const ChatDefaultStyle = styled.section`
+  height: 100%;
+  margin-left: 300px;
+  background-color: #36393f;
 `

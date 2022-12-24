@@ -4,7 +4,12 @@ import { Page } from "../utils/styles"
 
 const LogIn = () => {
   return (
-    <Page>
+    <Page
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      backgoundColor="#5865f2"
+    >
       <LoginForm />
     </Page>
   )

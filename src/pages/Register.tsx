@@ -4,11 +4,14 @@ import { Page } from "../utils/styles"
 
 const Register = () => {
   return (
-    <>
-      <Page>
-        <RegisterForm />
-      </Page>
-    </>
+    <Page
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      backgoundColor="#5865f2"
+    >
+      <RegisterForm />
+    </Page>
   )
 }
 

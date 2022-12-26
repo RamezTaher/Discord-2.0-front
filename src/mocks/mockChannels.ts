@@ -3,7 +3,7 @@ import { IChannel } from "../@types"
 export default [
   {
     id: 1,
-    name: "Ramez Taher",
+    name: "First Ramez",
     lastMessage: "Hey Take care",
   },
   {

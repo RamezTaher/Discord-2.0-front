@@ -66,7 +66,13 @@ export const ChatSidebarStyle = styled.div`
   color: #96989d;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    display: none;
+    width: 4px;
+    background-color: transparent;
+    border-radius: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #202225;
+    border-radius: 12px;
   }
 `
 export const ChatSidebarHeader = styled.header`

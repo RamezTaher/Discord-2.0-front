@@ -1,0 +1,19 @@
+.channelAvatar {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: red;
+}
+.channelInformations {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.channelName {
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+}
+.lastMessage {
+  font-size: 13px;
+}

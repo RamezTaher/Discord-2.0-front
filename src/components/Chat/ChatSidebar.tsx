@@ -1,14 +1,36 @@
-import React from "react"
-import { ChatSidebarStyle } from "../../utils/styles"
+import { FC } from "react"
+import {
+  ChannelItem,
+  ChannelItemsContainer,
+  ChatSidebarHeader,
+  ChatSidebarStyle,
+} from "../../utils/styles"
 import { AiOutlinePlus } from "react-icons/ai"
+import { IChannel } from "../../@types"
+import styles from "./index.module.scss"
 
-const ChatSidebar = () => {
+type Props = {
+  channels: IChannel[]
+}
+
+const ChatSidebar: FC<Props> = ({ channels }) => {
   return (
     <ChatSidebarStyle>
-      <header>
+      <ChatSidebarHeader>
         DIRECT MESSAGES
         <AiOutlinePlus size={22} />
-      </header>
+      </ChatSidebarHeader>
+      <ChannelItemsContainer>
+        {channels.map((channel) => (
+          <ChannelItem key={channel.id}>
+            <div className={styles.channelAvatar}></div>
+            <div className={styles.channelInformations}>
+              <div className={styles.channelName}>{channel.name}</div>
+              <div className={styles.lastMessage}>{channel.lastMessage}</div>
+            </div>
+          </ChannelItem>
+        ))}
+      </ChannelItemsContainer>
     </ChatSidebarStyle>
   )
 }

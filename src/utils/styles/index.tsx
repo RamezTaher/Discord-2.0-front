@@ -61,19 +61,32 @@ export const ChatSidebarStyle = styled.div`
   left: 0;
   height: 100%;
   width: ${CHAT_SIDEBAR_WIDTH}px;
-  padding: 15px 10px;
+  padding: 50px 10px 20px;
   background-color: #2f3136;
   color: #96989d;
-  & header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 15px;
-    & h1 {
-      font-weight: 500px;
-    }
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
+export const ChatSidebarHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: ${CHAT_SIDEBAR_WIDTH}px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  height: 50px;
+  padding: 20px 10px;
+  background-color: #2f3136;
+
+  & h1 {
+    font-weight: 500px;
+  }
+`
+
 export const ChannelStyle = styled.section`
   height: 100%;
   margin-left: ${CHAT_SIDEBAR_WIDTH}px;
@@ -83,4 +96,23 @@ export const ChatDefaultStyle = styled.section`
   height: 100%;
   margin-left: ${CHAT_SIDEBAR_WIDTH}px;
   background-color: #36393f;
+`
+
+export const ChannelItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`
+
+export const ChannelItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px;
+  border-radius: 3px;
+  &:hover {
+    background-color: #3b3e45;
+  }
 `

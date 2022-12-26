@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { PageProps } from "./styleTypes"
 
+export const CHAT_SIDEBAR_WIDTH = 300
+
 export const InputField = styled.input`
   background: #202225;
   outline: none;
@@ -58,8 +60,8 @@ export const ChatSidebarStyle = styled.div`
   top: 0;
   left: 0;
   height: 100%;
-  width: 300px;
-  padding: 15px;
+  width: ${CHAT_SIDEBAR_WIDTH}px;
+  padding: 15px 10px;
   background-color: #2f3136;
   color: #96989d;
   & header {
@@ -74,11 +76,11 @@ export const ChatSidebarStyle = styled.div`
 `
 export const ChannelStyle = styled.section`
   height: 100%;
-  margin-left: 300px;
+  margin-left: ${CHAT_SIDEBAR_WIDTH}px;
   background-color: #36393f;
 `
 export const ChatDefaultStyle = styled.section`
   height: 100%;
-  margin-left: 300px;
+  margin-left: ${CHAT_SIDEBAR_WIDTH}px;
   background-color: #36393f;
 `

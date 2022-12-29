@@ -8,12 +8,12 @@ export default [
   },
   {
     id: 2,
-    name: "Si Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
     id: 3,
-    name: "MR Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
@@ -28,12 +28,12 @@ export default [
   },
   {
     id: 6,
-    name: "Si Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
     id: 7,
-    name: "MR Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
@@ -48,12 +48,12 @@ export default [
   },
   {
     id: 6,
-    name: "Si Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
     id: 7,
-    name: "MR Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
@@ -68,12 +68,12 @@ export default [
   },
   {
     id: 6,
-    name: "Si Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
     id: 7,
-    name: "MR Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
@@ -88,12 +88,12 @@ export default [
   },
   {
     id: 6,
-    name: "Si Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
     id: 7,
-    name: "MR Ramez",
+    name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {

@@ -1,4 +1,3 @@
-import React from "react"
 import { ChatDefaultStyle } from "../../utils/styles"
 
 const ChatDefault = () => {

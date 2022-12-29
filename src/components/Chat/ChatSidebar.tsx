@@ -8,12 +8,14 @@ import {
 import { AiOutlinePlus } from "react-icons/ai"
 import { IChannel } from "../../@types"
 import styles from "./index.module.scss"
+import { useNavigate } from "react-router-dom"
 
 type Props = {
   channels: IChannel[]
 }
 
 const ChatSidebar: FC<Props> = ({ channels }) => {
+  const navigate = useNavigate()
   return (
     <ChatSidebarStyle>
       <ChatSidebarHeader>
@@ -22,7 +24,10 @@ const ChatSidebar: FC<Props> = ({ channels }) => {
       </ChatSidebarHeader>
       <ChannelItemsContainer>
         {channels.map((channel) => (
-          <ChannelItem key={channel.id}>
+          <ChannelItem
+            onClick={() => navigate(`/channels/${channel.id}`)}
+            key={channel.id}
+          >
             <div className={styles.channelAvatar}></div>
             <div className={styles.channelInformations}>
               <div className={styles.channelName}>{channel.name}</div>

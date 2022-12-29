@@ -9,8 +9,8 @@ const Channels = () => {
   const { id } = useParams()
   return (
     <Page>
-      <ChatSidebar channels={mockChannels} />
-      {!id && <ChatDefault />}
+      {/* <ChatSidebar channels={mockChannels} />
+      {!id && <ChatDefault />} */}
       <Outlet />
     </Page>
   )

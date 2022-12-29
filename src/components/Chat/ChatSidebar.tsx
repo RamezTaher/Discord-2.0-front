@@ -14,7 +14,7 @@ type Props = {
   channels: IChannel[]
 }
 
-const ChatSidebar: FC<Props> = ({ channels }) => {
+const ChatSidebar = ({ channels }: Props) => {
   const navigate = useNavigate()
   return (
     <ChatSidebarStyle>

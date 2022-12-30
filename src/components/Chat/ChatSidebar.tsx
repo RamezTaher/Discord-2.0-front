@@ -6,14 +6,14 @@ import {
 } from "../../utils/styles"
 import { AiOutlinePlus } from "react-icons/ai"
 import { IChannel } from "../../@types"
-import styles from "./index.module.scss"
 import { useNavigate } from "react-router-dom"
+import styles from "./index.module.scss"
 
 type Props = {
   channels: IChannel[]
 }
 
-export const ChatSidebar = ({ channels }: Props) => {
+const ChatSidebar = ({ channels }: Props) => {
   const navigate = useNavigate()
   return (
     <ChatSidebarStyle>
@@ -38,3 +38,5 @@ export const ChatSidebar = ({ channels }: Props) => {
     </ChatSidebarStyle>
   )
 }
+
+export default ChatSidebar

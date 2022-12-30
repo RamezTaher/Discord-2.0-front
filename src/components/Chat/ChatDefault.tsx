@@ -1,7 +1,5 @@
 import { ChatDefaultStyle } from "../../utils/styles"
 
-const ChatDefault = () => {
+export const ChatDefault = () => {
   return <ChatDefaultStyle>Chat default</ChatDefaultStyle>
 }
-
-export default ChatDefault

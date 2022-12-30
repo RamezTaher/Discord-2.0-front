@@ -13,7 +13,7 @@ type Props = {
   channels: IChannel[]
 }
 
-const ChatSidebar = ({ channels }: Props) => {
+export const ChatSidebar = ({ channels }: Props) => {
   const navigate = useNavigate()
   return (
     <ChatSidebarStyle>
@@ -38,5 +38,3 @@ const ChatSidebar = ({ channels }: Props) => {
     </ChatSidebarStyle>
   )
 }
-
-export default ChatSidebar

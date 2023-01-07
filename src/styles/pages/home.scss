@@ -1,0 +1,49 @@
+.herobackground {
+  background: #404eed;
+  position: relative;
+  min-height: 626px;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.backgroundImage {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -500px;
+}
+
+.foregroundLeft {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  height: auto;
+  width: auto;
+  max-width: none;
+  margin-left: -1030px;
+  -webkit-transform: none;
+  transform: none;
+}
+.foregroundRight {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: 370px;
+}
+
+.header-discord-logo {
+  width: 124px;
+}

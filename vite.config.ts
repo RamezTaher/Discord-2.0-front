@@ -7,5 +7,11 @@ export default defineConfig({
     port: 3000,
     host: "localhost",
   },
+  resolve: {
+    alias: {
+      "@": "/src/assets/",
+    },
+  },
+
   plugins: [react()],
 })

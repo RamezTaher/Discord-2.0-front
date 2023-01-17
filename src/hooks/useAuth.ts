@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getAuth } from "../utils/api-interceptor"
 
 export function useAuth() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState()
   useEffect(() => {
     getAuth()
       .then(({ data }) => console.log(data))

@@ -1,11 +1,15 @@
-import React from "react"
-import { useSelector } from "react-redux"
-import { Navigate, Outlet } from "react-router-dom"
+import React, { FC } from "react"
+import { Navigate, useLocation } from "react-router-dom"
 
-const AuthProtectedRoute = ({ children, ...rest }) => {
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
-  return userInfo && userInfo._id ? <Outlet /> : <Navigate to="/login" />
+export const AuthenticatedRoute: FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  const location = useLocation()
+  const { loading, user } = useAuth()
+
+  if (loading) {
+    return <div>loading</div>
+  }
+  if (user) return <>{children}</>
+  return <Navigate to="/login" state={{ from: location }} replace />
 }
-
-export default AuthProtectedRoute

@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { ILogUser } from "../../utils/@types"
+import { postLogUser } from "../../utils/api-interceptor"
 import {
   InputField,
   InputContainer,
@@ -15,21 +17,31 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<ILogUser>()
+  const navigate = useNavigate()
 
-  const submitHundler = (data: any) => {
+  // const [loading, setLoading] = useState(false)
+
+  const submitHundler = async (data: ILogUser) => {
     console.log(data)
+    try {
+      const user = await postLogUser(data)
+      console.log(user)
+      navigate("/channels")
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHundler)}>
       <FormTitle>Welcome back!</FormTitle>
       <InputContainer>
-        <InputLabel htmlFor="username">Email OR Username</InputLabel>
+        <InputLabel htmlFor="email">Email</InputLabel>
         <InputField
-          id="username"
-          type="text"
-          {...register("username", {
-            required: "Username or Email is required",
+          id="email"
+          type="email"
+          {...register("email", {
+            required: "Email is required",
           })}
         />
       </InputContainer>

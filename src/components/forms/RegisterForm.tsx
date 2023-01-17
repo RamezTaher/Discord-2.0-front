@@ -1,6 +1,8 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import { ICreateUser } from "../../utils/@types"
+import { postRegisterUser } from "../../utils/api-interceptor"
 import {
   InputField,
   InputContainer,
@@ -15,11 +17,15 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<ICreateUser>()
 
-  const submitHundler = (data: any) => {
+  const submitHundler = async (data: ICreateUser) => {
     console.log(data)
-    console.log("hello from register")
+    try {
+      await postRegisterUser(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHundler)}>
@@ -40,7 +46,7 @@ const RegisterForm = () => {
           <InputField
             id="firstname"
             type="text"
-            {...register("firstname", {
+            {...register("firstName", {
               required: "First Name is required",
             })}
           />
@@ -50,7 +56,7 @@ const RegisterForm = () => {
           <InputField
             id="lastname"
             type="text"
-            {...register("lastname", {
+            {...register("lastName", {
               required: "Last Name is required",
             })}
           />
@@ -61,7 +67,7 @@ const RegisterForm = () => {
         <InputField
           id="username"
           type="text"
-          {...register("username", {
+          {...register("userName", {
             required: "Username is required",
           })}
         />

@@ -2,3 +2,4 @@
 - React Hook Form
 - SASS
 - React Icons
+- React Query

@@ -42,62 +42,53 @@ export default [
     lastMessage: "Hey Take care",
   },
   {
-    id: 5,
+    id: 9,
     name: "Ramez Taher",
     lastMessage: "Hey Take care",
   },
   {
-    id: 6,
+    id: 10,
+    name: "Ramez",
+    lastMessage: "Hey Take care",
+  },
+
+  {
+    id: 11,
+    name: "Ramez Taher",
+    lastMessage: "Hey Take care",
+  },
+  {
+    id: 12,
     name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
-    id: 7,
+    id: 13,
     name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
-    id: 8,
+    id: 14,
     name: "Ramez Ben Taher",
     lastMessage: "Hey Take care",
   },
   {
-    id: 5,
+    id: 15,
     name: "Ramez Taher",
     lastMessage: "Hey Take care",
   },
   {
-    id: 6,
+    id: 16,
     name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
-    id: 7,
+    id: 17,
     name: "Ramez",
     lastMessage: "Hey Take care",
   },
   {
-    id: 8,
-    name: "Ramez Ben Taher",
-    lastMessage: "Hey Take care",
-  },
-  {
-    id: 5,
-    name: "Ramez Taher",
-    lastMessage: "Hey Take care",
-  },
-  {
-    id: 6,
-    name: "Ramez",
-    lastMessage: "Hey Take care",
-  },
-  {
-    id: 7,
-    name: "Ramez",
-    lastMessage: "Hey Take care",
-  },
-  {
-    id: 8,
+    id: 18,
     name: "Ramez Ben Taher",
     lastMessage: "Hey Take care",
   },

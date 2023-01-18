@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios"
-import { ICreateUser, ILogUser } from "./@types"
+import { ICreateUser, ILogUser, IUser } from "./@types"
 
 const API_URL = import.meta.env.VITE_API_BASE_URL
 const api = axios.create({ baseURL: API_URL })
@@ -11,4 +11,4 @@ export const postRegisterUser = (data: ICreateUser) =>
 export const postLogUser = (data: ILogUser) =>
   api.post(`/auth/login`, data, config)
 
-export const getAuth = () => api.post(`/auth/me`, config)
+export const getAuth = () => api.get<IUser>(`/auth/me`, config)

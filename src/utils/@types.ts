@@ -1,3 +1,5 @@
+import internal from "stream"
+
 export type ICreateUser = {
   email: string
   firstName: string
@@ -9,4 +11,11 @@ export type ICreateUser = {
 export type ILogUser = {
   email: string
   password: string
+}
+export type IUser = {
+  id: number
+  email: string
+  firstName: string
+  lastName: string
+  userName: string
 }

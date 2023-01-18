@@ -38,9 +38,7 @@ type Props = {
 const ProtectedAuthRouter = ({ children }: Props) => {
   const auth = useAuth()
   const location = useLocation()
-  console.log(auth)
   if (!auth.user) {
-    console.log(auth)
     return <Navigate to="/login" state={{ from: location }} replace />
   }
   return <>{children}</>

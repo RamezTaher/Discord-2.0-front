@@ -10,6 +10,7 @@ export function useAuth() {
     setLoading(true)
     getAuth()
       .then(({ data }) => {
+        console.log(data)
         setUser(data)
         setLoading(false)
       })

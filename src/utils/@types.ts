@@ -1,5 +1,3 @@
-import internal from "stream"
-
 export type ICreateUser = {
   email: string
   firstName: string

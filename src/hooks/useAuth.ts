@@ -4,20 +4,23 @@ import { getAuth } from "../utils/api-interceptor"
 
 export function useAuth() {
   const [user, setUser] = useState<IUser | undefined>()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const controller = new AbortController()
   useEffect(() => {
-    setLoading(true)
     getAuth()
       .then(({ data }) => {
         setUser(data)
-        console.log("user", user)
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500)
       })
       .catch((error) => {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500)
         console.log(error)
       })
+
     return () => {
       controller.abort()
     }

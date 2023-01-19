@@ -12,14 +12,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          path="/channels"
-          element={
-            <ProtectedAuthRouter>
-              <Channels />
-            </ProtectedAuthRouter>
-          }
-        >
+        <Route path="/channels" element={<Channels />}>
           <Route path="/channels/:id" element={<Channel />}></Route>
         </Route>
 
@@ -35,13 +28,13 @@ type Props = {
   children: React.ReactNode
 }
 
-const ProtectedAuthRouter = ({ children }: Props) => {
-  const auth = useAuth()
-  const location = useLocation()
-  if (!auth.user) {
-    return <Navigate to="/login" state={{ from: location }} replace />
-  }
-  return <>{children}</>
-}
+// const ProtectedAuthRouter = ({ children }: Props) => {
+//   const auth = useAuth()
+//   const location = useLocation()
+//   if (!auth.user) {
+//     return <Navigate to="/login" state={{ from: location }} replace />
+//   }
+//   return <>{children}</>
+// }
 
 export default App

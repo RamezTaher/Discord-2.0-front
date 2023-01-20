@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react"
+import { Overlay } from "../../utils/styles"
 
 const ChatNew = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Overlay>Ramez</Overlay>
+    </>
   )
 }
 

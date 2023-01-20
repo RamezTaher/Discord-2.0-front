@@ -122,3 +122,14 @@ export const ChannelItem = styled.div`
     background-color: #3b3e45;
   }
 `
+
+export const Overlay = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: #000000c9;
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

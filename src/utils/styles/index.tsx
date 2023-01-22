@@ -133,3 +133,11 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const ModalContainer = styled.div`
+  background-color: #121212;
+  width: 600px;
+`
+export const ModalHeader = styled.header`
+  width: 100%;
+`

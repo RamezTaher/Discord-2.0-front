@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react"
+import NewChatModal from "../models/NewChatModal"
 
 const NewChatForm = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <NewChatModal></NewChatModal>
 }
 
 export default NewChatForm

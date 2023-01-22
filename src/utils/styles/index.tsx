@@ -141,3 +141,8 @@ export const ModalContainer = styled.div`
 export const ModalHeader = styled.header`
   width: 100%;
 `
+export const ModalBody = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`

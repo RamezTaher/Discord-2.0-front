@@ -1,10 +1,17 @@
+import { type } from "os"
 import React from "react"
-import { ModalContainer, ModalHeader } from "../../utils/styles"
+import { ModalBody, ModalContainer, ModalHeader } from "../../utils/styles"
 
-const NewChatModal = () => {
+type Props = {
+  children: React.ReactNode
+}
+const NewChatModal = ({ children }: Props) => {
   return (
     <ModalContainer>
-      <ModalHeader>ramez</ModalHeader>
+      <ModalHeader>
+        <h1>Select Friends</h1>
+      </ModalHeader>
+      <ModalBody></ModalBody>
     </ModalContainer>
   )
 }

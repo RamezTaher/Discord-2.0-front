@@ -1,10 +1,15 @@
 import React from "react"
-import { Overlay } from "../../utils/styles"
+import { InputContainer, InputField, Overlay } from "../../utils/styles"
+import NewChatModal from "../models/NewChatModal"
 
 const ChatNew = () => {
   return (
     <>
-      <Overlay>Ramez</Overlay>
+      <Overlay>
+        <NewChatModal>
+          <form action="">ramez</form>
+        </NewChatModal>
+      </Overlay>
     </>
   )
 }

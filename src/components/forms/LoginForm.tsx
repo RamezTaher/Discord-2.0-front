@@ -33,7 +33,7 @@ const LoginForm = () => {
     }
   }
   return (
-    <form className={styles.form} onSubmit={handleSubmit(submitHundler)}>
+    <form className={styles.authForm} onSubmit={handleSubmit(submitHundler)}>
       <FormTitle>Welcome back!</FormTitle>
       <InputContainer>
         <InputLabel htmlFor="email">Email</InputLabel>

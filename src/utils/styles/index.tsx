@@ -8,9 +8,21 @@ export const InputField = styled.input`
   outline: none;
   border: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   border-radius: 4px;
   padding: 8px;
+`
+export const TextAreaField = styled.textarea`
+  background: #202225;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  height: 150px;
+  resize: none;
 `
 export const InputContainer = styled.div`
   color: #fff;
@@ -135,8 +147,10 @@ export const Overlay = styled.div`
 `
 
 export const ModalContainer = styled.div`
-  background-color: #121212;
+  background-color: #36393f;
+  padding: 30px;
   width: 600px;
+  border-radius: 5px;
 `
 export const ModalHeader = styled.header`
   width: 100%;

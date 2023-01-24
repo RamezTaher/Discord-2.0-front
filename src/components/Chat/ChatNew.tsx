@@ -1,14 +1,22 @@
-import React from "react"
-import { InputContainer, InputField, Overlay } from "../../utils/styles"
+import { useRef } from "react"
+import { Overlay } from "../../utils/styles"
 import NewChatModal from "../models/NewChatModal"
 
-const ChatNew = () => {
+type Props = {
+  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+const ChatNew = ({ setIsModelOpen }: Props) => {
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const closeModal = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { current } = overlayRef
+    if (current === event.target) {
+      setIsModelOpen(false)
+    }
+  }
   return (
     <>
-      <Overlay>
-        <NewChatModal>
-          <form action="">ramez</form>
-        </NewChatModal>
+      <Overlay ref={overlayRef} onClick={closeModal}>
+        <NewChatModal />
       </Overlay>
     </>
   )

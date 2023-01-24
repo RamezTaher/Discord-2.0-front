@@ -20,7 +20,7 @@ const ChatSidebar = ({ channels }: Props) => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   return (
     <>
-      {isModelOpen && <ChatNew />}
+      {isModelOpen && <ChatNew setIsModelOpen={setIsModelOpen} />}
       <ChatSidebarStyle>
         <ChatSidebarHeader>
           DIRECT MESSAGES

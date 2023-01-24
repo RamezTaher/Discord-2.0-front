@@ -1,17 +1,36 @@
-import { type } from "os"
 import React from "react"
-import { ModalBody, ModalContainer, ModalHeader } from "../../utils/styles"
+import {
+  ModalBody,
+  ModalContainer,
+  ModalHeader,
+  Button,
+  InputContainer,
+  InputField,
+  InputLabel,
+  TextAreaField,
+} from "../../utils/styles"
 
-type Props = {
-  children: React.ReactNode
-}
-const NewChatModal = ({ children }: Props) => {
+import styles from "./index.module.scss"
+
+const NewChatModal = () => {
   return (
     <ModalContainer>
       <ModalHeader>
-        <h1>Select Friends</h1>
+        <h1 className={styles.modelTitle}>Create a conversation</h1>
       </ModalHeader>
-      <ModalBody></ModalBody>
+      <ModalBody>
+        <form className={styles.modelForm}>
+          <InputContainer>
+            <InputLabel htmlFor="username">Type the username</InputLabel>
+            <InputField id="username" type="text" />
+          </InputContainer>
+          <InputContainer>
+            <InputLabel htmlFor="message">Message</InputLabel>
+            <TextAreaField id="message" />
+          </InputContainer>
+          <Button>Start Conversation</Button>
+        </form>
+      </ModalBody>
     </ModalContainer>
   )
 }

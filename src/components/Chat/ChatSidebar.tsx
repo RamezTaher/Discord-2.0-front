@@ -24,8 +24,8 @@ const ChatSidebar = ({ channels }: Props) => {
       <ChatSidebarStyle>
         <ChatSidebarHeader>
           DIRECT MESSAGES
-          <div onClick={() => setIsModelOpen(true)}>
-            <AiOutlinePlus size={22} />
+          <div className={styles.icon} onClick={() => setIsModelOpen(true)}>
+            <AiOutlinePlus size={20} />
           </div>
         </ChatSidebarHeader>
         <ChannelItemsContainer>

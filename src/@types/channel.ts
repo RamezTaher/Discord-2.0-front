@@ -1,5 +1,7 @@
+import { IUser } from "./user"
+
 export interface IChannel {
   id: number
-  name: string
-  lastMessage: string
+  sender: IUser
+  receiver: IUser
 }

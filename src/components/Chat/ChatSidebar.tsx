@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import {
   ChannelItem,
   ChannelItemsContainer,
@@ -6,10 +6,11 @@ import {
   ChatSidebarStyle,
 } from "../../utils/styles"
 import { AiOutlinePlus } from "react-icons/ai"
-import { IChannel } from "../../@types"
 import { useNavigate } from "react-router-dom"
 import styles from "./index.module.scss"
 import ChatNew from "./ChatNew"
+import { IChannel } from "../../@types"
+import { AuthContext } from "../../context/AuthContext"
 
 type Props = {
   channels: IChannel[]
@@ -18,6 +19,10 @@ type Props = {
 const ChatSidebar = ({ channels }: Props) => {
   const navigate = useNavigate()
   const [isModelOpen, setIsModelOpen] = useState(false)
+  const { user } = useContext(AuthContext)
+  const getTheOtherSideOfChannel = (channel: IChannel) => {
+    return channel.sender.id === user?.id ? channel.receiver : channel.sender
+  }
   return (
     <>
       {isModelOpen && <ChatNew setIsModelOpen={setIsModelOpen} />}
@@ -36,8 +41,12 @@ const ChatSidebar = ({ channels }: Props) => {
             >
               <div className={styles.channelAvatar}></div>
               <div className={styles.channelInformations}>
-                <div className={styles.channelName}>{channel.name}</div>
-                <div className={styles.lastMessage}>{channel.lastMessage}</div>
+                <div className={styles.channelName}>
+                  {`${getTheOtherSideOfChannel(channel).firstName} ${
+                    getTheOtherSideOfChannel(channel).lastName
+                  }`}
+                </div>
+                <div className={styles.lastMessage}>Last Message Sent</div>
               </div>
             </ChannelItem>
           ))}

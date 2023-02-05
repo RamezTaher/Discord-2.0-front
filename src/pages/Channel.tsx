@@ -8,7 +8,7 @@ const Channel = () => {
   const { id } = useParams()
   return (
     <ChannelStyle>
-      {user?.email} && {user?.userName}
+      {user?.id} && {user?.userName}
     </ChannelStyle>
   )
 }

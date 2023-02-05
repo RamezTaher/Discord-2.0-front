@@ -2,8 +2,8 @@ import { Outlet, useParams } from "react-router-dom"
 
 import { Page } from "../utils/styles"
 
-import ChatSidebar from "../components/Chat/ChatSidebar"
-import ChatDefault from "../components/Chat/ChatDefault"
+import ChatSidebar from "../components/channel/ChatSidebar"
+import ChatDefault from "../components/channel/ChatDefault"
 import { useEffect, useState } from "react"
 import { IChannel } from "../@types"
 import { getChannels } from "../utils/api-interceptor"

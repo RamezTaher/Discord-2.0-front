@@ -18,3 +18,6 @@ export const getAuth = () => api.get<IUser>(`/auth/me`, config)
 // Channels
 
 export const getChannels = () => axios.get(`${API_URL}/channels`, config)
+
+export const getChannelMessages = (id: number) =>
+  axios.get(`${API_URL}/messages/${id}`, config)

@@ -7,6 +7,7 @@ import ChatDefault from "../components/channel/ChatDefault"
 import { useEffect, useState } from "react"
 import { IChannel } from "../@types"
 import { getChannels } from "../utils/api-interceptor"
+import MessagesContainer from "../components/messages/MessagesContainer"
 
 const Channels = () => {
   const { id } = useParams()
@@ -24,7 +25,7 @@ const Channels = () => {
   return (
     <Page>
       <ChatSidebar channels={channels} />
-      {!id && <ChatDefault />}
+      {id ? <MessagesContainer></MessagesContainer> : <ChatDefault />}
 
       <Outlet />
     </Page>

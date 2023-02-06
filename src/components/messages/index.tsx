@@ -7,6 +7,7 @@ export const MessagesContainerStyle = styled.div`
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
+  background-color: #36393f;
   &::-webkit-scrollbar {
     display: none;
   }

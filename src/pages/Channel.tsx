@@ -12,8 +12,10 @@ const Channel = () => {
   const { id } = useParams()
   const [messages, setMessages] = useState<IMessage[]>([])
 
+
   useEffect(() => {
     const channelId = parseInt(id!)
+    console.log("channelid",channelId)
     getChannelMessages(channelId)
       .then(({ data }) => {
         console.log("data from fetch api", data)

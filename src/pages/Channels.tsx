@@ -25,7 +25,7 @@ const Channels = () => {
   return (
     <Page>
       <ChatSidebar channels={channels} />
-      {id ? <MessagesContainer></MessagesContainer> : <ChatDefault />}
+      {!id && <ChatDefault />}
 
       <Outlet />
     </Page>

@@ -1,10 +1,23 @@
 import React from "react"
-import { MessagesContainerStyle } from "."
+import { MessagesContainerBody, MessagesContainerStyle } from "."
+import { IMessage } from "../../@types"
+import Message from "./Message"
+import { MessageInputField } from "./MessageInputField"
+import MessagesContainerHeader from "./MessagesContainerHeader"
 
-const MessagesContainer = () => {
+type Props = {
+  messages: IMessage[]
+}
+const MessagesContainer = ({ messages }: Props) => {
+  console.log("container", messages)
   return (
     <>
-      <MessagesContainerStyle>ramez</MessagesContainerStyle>
+      <MessagesContainerStyle>
+        <MessagesContainerBody>
+          <Message messages={messages} />
+          <MessageInputField />
+        </MessagesContainerBody>
+      </MessagesContainerStyle>
     </>
   )
 }

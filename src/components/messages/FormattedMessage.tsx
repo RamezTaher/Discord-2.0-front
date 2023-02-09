@@ -1,6 +1,12 @@
 import { formatRelative } from "date-fns"
 import React from "react"
-import { MessageItemAvatar, MessageItemContainer, MessageItemContent, MessageItemDetails, MessageItemHeader } from "."
+import {
+  MessageItemAvatar,
+  MessageItemContainer,
+  MessageItemContent,
+  MessageItemDetails,
+  MessageItemHeader,
+} from "."
 import { IMessage, IUser } from "../../@types"
 
 type Props = {

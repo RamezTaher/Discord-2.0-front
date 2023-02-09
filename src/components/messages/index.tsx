@@ -71,7 +71,11 @@ export const MessageItemAvatar = styled.div`
   background-color: #ee4343;
 `
 
-export const MessageItemDetails = styled.div``
+export const MessageItemDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
 
 export const MessageItemHeader = styled.div`
   display: flex;

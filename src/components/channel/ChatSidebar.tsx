@@ -46,7 +46,11 @@ const ChatSidebar = ({ channels }: Props) => {
                     getTheOtherSideOfChannel(channel).lastName
                   }`}
                 </div>
-                <div className={styles.lastMessage}>Last Message Sent</div>
+                <div className={styles.lastMessage}>
+                  {channel.lastMessageSent?.messageContent
+                    ? channel.lastMessageSent.messageContent
+                    : "ramez"}
+                </div>
               </div>
             </ChannelItem>
           ))}

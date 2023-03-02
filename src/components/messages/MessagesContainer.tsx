@@ -13,6 +13,7 @@ const MessagesContainer = ({ messages }: Props) => {
   return (
     <>
       <MessagesContainerStyle>
+        <MessagesContainerHeader />
         <MessagesContainerBody>
           <Message messages={messages} />
           <MessageInputField />

@@ -9,10 +9,11 @@ export const MessagesContainerStyle = styled.div`
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
-  background-color: #36393f;
+  background-color: #313338;
   &::-webkit-scrollbar {
     display: none;
   }
+  position: relative;
 `
 
 export const MessagesContainerBody = styled.div`
@@ -37,24 +38,23 @@ export const MessageContainerStyle = styled.div`
 
 export const MessageInputContainer = styled.div`
   box-sizing: border-box;
-  background-color: #101010;
+  background-color: #383a40;
   border-radius: 5px;
   width: 100%;
-  padding: 24px 32px;
+  padding: 10px 32px;
 `
 
 export const MessageInput = styled.input`
   background-color: inherit;
   outline: none;
   border: none;
-  color: #454545;
+  color: #fff;
   font-family: "Inter";
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 16px;
   width: 100%;
-  padding: 0;
-  margin: 4px 0;
   resize: none;
+  padding: 5px 0;
 `
 
 export const MessageItemContainer = styled.div`
@@ -96,16 +96,16 @@ export const MessageItemContent = styled.div<MessageItemContentProps>`
 `
 
 export const MessagesContainerHeaderStyle = styled.header`
-  background-color: #151515;
+  background-color: #36393f;
   border-bottom: 1px solid #5454543d;
-  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
+  padding: 20px 32px;
   box-sizing: border-box;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  color: #fff;
 `

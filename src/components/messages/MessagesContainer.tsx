@@ -9,7 +9,6 @@ type Props = {
   messages: IMessage[]
 }
 const MessagesContainer = ({ messages }: Props) => {
-  console.log("container", messages)
   return (
     <>
       <MessagesContainerStyle>

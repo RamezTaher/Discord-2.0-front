@@ -31,7 +31,9 @@ const FormattedMessage = ({ user, message }: Props) => {
             {formatRelative(new Date(message.sentAt), new Date())}
           </span>
         </MessageItemHeader>
-        <MessageItemContent>{message.messageContent}</MessageItemContent>
+        <MessageItemContent padding="8px 0 0 0">
+          {message.messageContent}
+        </MessageItemContent>
       </MessageItemDetails>
     </MessageItemContainer>
   )

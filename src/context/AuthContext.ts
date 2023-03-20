@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { IUser } from "../utils/@types"
+import { IUser } from "../@types"
 
 type AuthContextType = {
   updateAuthUser: (user: IUser) => void

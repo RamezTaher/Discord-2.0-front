@@ -8,7 +8,8 @@ import Home from "./pages/Home"
 import LogIn from "./pages/LogIn"
 import Register from "./pages/Register"
 import "./styles/main.scss"
-import { IUser } from "./utils/@types"
+import { IUser } from "./@types"
+import { socket, SocketContext } from "./context/SocketContext"
 
 function App() {
   const [user, setUser] = useState<IUser>()
@@ -16,22 +17,24 @@ function App() {
   return (
     <>
       <AuthContext.Provider value={{ updateAuthUser: setUser, user }}>
-        <Routes>
-          <Route
-            path="/channels"
-            element={
-              <ProtectedAuthRouter>
-                <Channels />
-              </ProtectedAuthRouter>
-            }
-          >
-            <Route path="/channels/:id" element={<Channel />}></Route>
-          </Route>
+        <SocketContext.Provider value={socket}>
+          <Routes>
+            <Route
+              path="/channels"
+              element={
+                <ProtectedAuthRouter>
+                  <Channels />
+                </ProtectedAuthRouter>
+              }
+            >
+              <Route path="/channels/:id" element={<Channel />}></Route>
+            </Route>
 
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </SocketContext.Provider>
       </AuthContext.Provider>
     </>
   )

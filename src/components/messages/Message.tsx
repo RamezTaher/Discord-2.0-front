@@ -17,9 +17,9 @@ const Message = ({ messages }: Props) => {
 
   const formatMessages = () => {
     return messages.map((message, idx, messagesArray) => {
-      console.log(idx)
+      const nextMessageIdx = idx + 1
       const currentMessage = messagesArray[idx]
-      const nextMessage = messagesArray[idx + 1]
+      const nextMessage = messagesArray[nextMessageIdx]
       if (messagesArray.length === idx + 1) {
         // last msg
         return <FormattedMessage user={user} message={message} />

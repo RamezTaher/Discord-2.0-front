@@ -3,3 +3,4 @@
 - SASS
 - React Icons
 - React Query
+- WebSocket / Socket.io

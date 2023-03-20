@@ -17,6 +17,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5",
     "sass": "^1.56.2",
+    "socket.io-client": "^4.6.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

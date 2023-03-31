@@ -18,7 +18,6 @@ const Channels = () => {
     getChannels()
       .then(({ data }) => {
         setChannels(data)
-        console.log(data)
       })
       .catch((err) => console.log(err))
   }, [])

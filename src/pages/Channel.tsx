@@ -17,16 +17,15 @@ const Channel = () => {
 
   useEffect(() => {
     const channelId = parseInt(id!)
-    console.log("channelid", channelId)
     getChannelMessages(channelId)
       .then(({ data }) => {
-        console.log("data from fetch api", data)
         setMessages(data.messages)
       })
       .catch((err) => console.log(err))
   }, [id])
 
   useEffect(() => {
+    console.log("ramez")
     socket.on("connected", () => console.log("Connected"))
     socket.on("onMessage", (payload: ISendMessage) => {
       console.log("Message Received")

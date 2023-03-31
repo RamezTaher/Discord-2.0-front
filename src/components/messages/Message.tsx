@@ -13,7 +13,6 @@ type Props = {
 }
 const Message = ({ messages }: Props) => {
   const { user } = useContext(AuthContext)
-  console.log(messages)
 
   const formatMessages = () => {
     return messages.map((message, idx, messagesArray) => {
@@ -22,24 +21,23 @@ const Message = ({ messages }: Props) => {
       const nextMessage = messagesArray[nextMessageIdx]
       if (messagesArray.length === idx + 1) {
         // last msg
-        return <FormattedMessage user={user} message={message} />
+        return <FormattedMessage key={idx} user={user} message={message} />
       }
       if (currentMessage.sender.id === nextMessage.sender.id) {
         return (
-          <MessageItemContainer>
+          <MessageItemContainer key={idx}>
             <MessageItemContent padding="0 0 0 70px">
               {message.messageContent}
             </MessageItemContent>
           </MessageItemContainer>
         )
       }
-      return <FormattedMessage user={user} message={message} />
+      return <FormattedMessage key={idx} user={user} message={message} />
     })
   }
 
   useEffect(() => {
     formatMessages()
-    console.log(messages)
   }, [])
   return <MessageContainerStyle>{formatMessages()}</MessageContainerStyle>
 }

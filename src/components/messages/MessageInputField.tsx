@@ -1,9 +1,24 @@
+import { Dispatch, SetStateAction } from "react"
 import { MessageInput, MessageInputContainer } from "."
 
-export const MessageInputField = () => {
+type Props = {
+  messageContent: string
+  setContent: Dispatch<SetStateAction<string>>
+  sendMessage: (e: React.FormEvent<HTMLFormElement>) => void
+}
+export const MessageInputField = ({
+  messageContent,
+  setContent,
+  sendMessage,
+}: Props) => {
   return (
     <MessageInputContainer>
-      <MessageInput />
+      <form onSubmit={sendMessage}>
+        <MessageInput
+          value={messageContent}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </form>
     </MessageInputContainer>
   )
 }

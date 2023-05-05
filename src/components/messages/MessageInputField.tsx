@@ -3,12 +3,12 @@ import { MessageInput, MessageInputContainer } from "."
 
 type Props = {
   messageContent: string
-  setContent: Dispatch<SetStateAction<string>>
+  setMessageContent: Dispatch<SetStateAction<string>>
   sendMessage: (e: React.FormEvent<HTMLFormElement>) => void
 }
 export const MessageInputField = ({
   messageContent,
-  setContent,
+  setMessageContent,
   sendMessage,
 }: Props) => {
   return (
@@ -16,7 +16,7 @@ export const MessageInputField = ({
       <form onSubmit={sendMessage}>
         <MessageInput
           value={messageContent}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => setMessageContent(e.target.value)}
         />
       </form>
     </MessageInputContainer>

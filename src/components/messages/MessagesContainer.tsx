@@ -11,7 +11,7 @@ type Props = {
   messages: IMessage[]
 }
 const MessagesContainer = ({ messages }: Props) => {
-  const [messageContent, setmessageContent] = useState("")
+  const [messageContent, setMessageContent] = useState("")
   const { id } = useParams()
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -22,7 +22,7 @@ const MessagesContainer = ({ messages }: Props) => {
 
     try {
       await postNewMessage({ channelId, messageContent })
-      setmessageContent("")
+      setMessageContent("")
     } catch (err) {
       console.log(err)
     }
@@ -35,7 +35,7 @@ const MessagesContainer = ({ messages }: Props) => {
           <Message messages={messages} />
           <MessageInputField
             messageContent={messageContent}
-            setContent={setmessageContent}
+            setMessageContent={setMessageContent}
             sendMessage={sendMessage}
           />
         </MessagesContainerBody>

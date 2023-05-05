@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios"
-import { ICreateUser, ILogUser, IUser } from "../@types"
+import { IChannel, ICreateUser, ILogUser, IUser } from "../@types"
 import { ISendMessage } from "../@types/sendMessage"
 import { ICreateMessage } from "../@types/createMessage"
 
@@ -19,7 +19,8 @@ export const getAuth = () => api.get<IUser>(`/auth/me`, config)
 
 // Channels
 
-export const getChannels = () => axios.get(`${API_URL}/channels`, config)
+export const getChannels = () =>
+  axios.get<IChannel[]>(`${API_URL}/channels`, config)
 
 export const getChannelMessages = (id: number) =>
   axios.get(`${API_URL}/messages/${id}`, config)

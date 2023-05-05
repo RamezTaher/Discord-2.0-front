@@ -6,5 +6,5 @@ export interface IChannel {
   sender: IUser
   receiver: IUser
   lastMessageSent: IMessage
-  createdAt: Date;
+  createdAt: string
 }

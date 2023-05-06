@@ -7,12 +7,22 @@ import {
 import { IMessage } from "../../@types/message"
 import { AuthContext } from "../../context/AuthContext"
 import FormattedMessage from "./FormattedMessage"
+import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "../../store"
 
 type Props = {
   messages: IMessage[]
 }
 const Message = ({ messages }: Props) => {
   const { user } = useContext(AuthContext)
+  const { id } = useParams()
+  const channelMessages = useSelector(
+    (state: RootState) => state.channel.messages
+  )
+  useEffect(() => {
+    console.log(id)
+  }, [])
 
   const formatMessages = () => {
     return messages.map((message, idx, messagesArray) => {

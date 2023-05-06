@@ -20,7 +20,7 @@ const ChatSidebar = ({}: Props) => {
   const navigate = useNavigate()
   const [isModelOpen, setIsModelOpen] = useState(false)
   const { user } = useContext(AuthContext)
-  const channel = useSelector((state: RootState) => state.channel.channels)
+  const channels = useSelector((state: RootState) => state.channel.channels)
   const getTheOtherSideOfChannel = (channel: IChannel) => {
     return channel.sender.id === user?.id ? channel.receiver : channel.sender
   }
@@ -35,7 +35,7 @@ const ChatSidebar = ({}: Props) => {
           </div>
         </ChatSidebarHeader>
         <ChannelItemsContainer>
-          {Array.from(channel, ([_, channel]) => channel).map((channel) => (
+          {channels.map((channel) => (
             <ChannelItem
               onClick={() => navigate(`/channels/${channel.id}`)}
               key={channel.id}

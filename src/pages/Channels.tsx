@@ -1,31 +1,24 @@
 import { Outlet, useParams } from "react-router-dom"
-
+import { useDispatch } from "react-redux"
 import { Page } from "../utils/styles"
 
 import ChatSidebar from "../components/channel/ChatSidebar"
 import ChatDefault from "../components/channel/ChatDefault"
 import { useEffect, useState } from "react"
 import { IChannel } from "../@types"
-import { getChannels } from "../utils/api-interceptor"
-import MessagesContainer from "../components/messages/MessagesContainer"
-
+import { AppDispatch } from "../store"
+import { fetchChannelsThunk } from "../store/channelSlice"
 const Channels = () => {
   const { id } = useParams()
-
-  const [channels, setChannels] = useState<IChannel[]>([])
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
-    getChannels()
-      .then(({ data }) => {
-        setChannels(data)
-      })
-      .catch((err) => console.log(err))
+    dispatch(fetchChannelsThunk())
   }, [])
   return (
     <Page>
-      <ChatSidebar channels={channels} />
+      <ChatSidebar />
       {!id && <ChatDefault />}
-
       <Outlet />
     </Page>
   )

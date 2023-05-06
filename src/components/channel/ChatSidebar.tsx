@@ -11,15 +11,16 @@ import styles from "./index.module.scss"
 import ChatNew from "./ChatNew"
 import { IChannel } from "../../@types"
 import { AuthContext } from "../../context/AuthContext"
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "../../store"
 
-type Props = {
-  channels: IChannel[]
-}
+type Props = {}
 
-const ChatSidebar = ({ channels }: Props) => {
+const ChatSidebar = ({}: Props) => {
   const navigate = useNavigate()
   const [isModelOpen, setIsModelOpen] = useState(false)
   const { user } = useContext(AuthContext)
+  const channel = useSelector((state: RootState) => state.channel.channels)
   const getTheOtherSideOfChannel = (channel: IChannel) => {
     return channel.sender.id === user?.id ? channel.receiver : channel.sender
   }
@@ -34,7 +35,7 @@ const ChatSidebar = ({ channels }: Props) => {
           </div>
         </ChatSidebarHeader>
         <ChannelItemsContainer>
-          {channels.map((channel) => (
+          {Array.from(channel, ([_, channel]) => channel).map((channel) => (
             <ChannelItem
               onClick={() => navigate(`/channels/${channel.id}`)}
               key={channel.id}

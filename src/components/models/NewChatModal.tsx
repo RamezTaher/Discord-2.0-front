@@ -12,6 +12,9 @@ import {
 
 import styles from "./index.module.scss"
 
+import { useDispatch } from "react-redux"
+import { addChannel } from "../../store/channelSlice"
+
 const NewChatModal = () => {
   return (
     <ModalContainer>
@@ -28,7 +31,13 @@ const NewChatModal = () => {
             <InputLabel htmlFor="message">Message</InputLabel>
             <TextAreaField id="message" />
           </InputContainer>
-          <Button>Start Conversation</Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault()
+            }}
+          >
+            Start Conversation
+          </Button>
         </form>
       </ModalBody>
     </ModalContainer>

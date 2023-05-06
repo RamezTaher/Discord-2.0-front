@@ -29,10 +29,8 @@ export const channelsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchChannelsThunk.fulfilled, (state, action) => {
       action.payload.data.forEach((channel: IChannel) => {
-        console.log(channel)
         state.channels.set(channel.id, channel)
       })
-      console.log(state.channels)
     })
   },
 })

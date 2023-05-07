@@ -10,7 +10,7 @@ import { getChannelMessages } from "../utils/api-interceptor"
 import { ChannelStyle } from "../utils/styles"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
-import { fetchMessagesThunk } from "../store/channelSlice"
+import { fetchMessagesThunk } from "../store/messageSlice"
 
 const Channel = () => {
   const { user } = useContext(AuthContext)

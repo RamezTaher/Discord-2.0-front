@@ -18,14 +18,16 @@ const Message = ({ messages }: Props) => {
   const { user } = useContext(AuthContext)
   const { id } = useParams()
   const channelMessages = useSelector(
-    (state: RootState) => state.channel.messages
+    (state: RootState) => state.messages.messages
   )
   useEffect(() => {
     console.log(id)
   }, [])
 
   const formatMessages = () => {
-    return messages.map((message, idx, messagesArray) => {
+    const msgs = channelMessages.find((cm) => cm.id === parseInt(id!))
+    if (!msgs) return []
+    return msgs?.messages?.map((message, idx, messagesArray) => {
       const nextMessageIdx = idx + 1
       const currentMessage = messagesArray[idx]
       const nextMessage = messagesArray[nextMessageIdx]

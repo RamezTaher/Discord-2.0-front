@@ -11,6 +11,7 @@ import { ChannelStyle } from "../utils/styles"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
 import { addMessage, fetchMessagesThunk } from "../store/messageSlice"
+import { updateChannel } from "../store/channelSlice"
 
 const Channel = () => {
   const { user } = useContext(AuthContext)
@@ -30,6 +31,7 @@ const Channel = () => {
     socket.on("onMessage", (payload: ISendMessage) => {
       const { channel, ...messageContent } = payload
       dispatch(addMessage(payload))
+      dispatch(updateChannel(channel))
     })
     return () => {
       socket.off("connected")

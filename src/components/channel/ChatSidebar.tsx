@@ -48,9 +48,7 @@ const ChatSidebar = ({}: Props) => {
                   }`}
                 </div>
                 <div className={styles.lastMessage}>
-                  {channel.lastMessageSent?.messageContent
-                    ? channel.lastMessageSent.messageContent
-                    : "ramez"}
+                  {channel.lastMessageSent?.messageContent ?? ""}
                 </div>
               </div>
             </ChannelItem>

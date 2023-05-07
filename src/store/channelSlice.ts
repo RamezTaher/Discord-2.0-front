@@ -28,6 +28,14 @@ export const channelsSlice = createSlice({
     addChannel: (state, action: PayloadAction<IChannel>) => {
       console.log("Add Channel")
     },
+
+    updateChannel: (state, action: PayloadAction<IChannel>) => {
+      console.log("Inside updateConversation")
+      const channel = action.payload
+      const index = state.channels.findIndex((c) => c.id === channel.id)
+      state.channels.splice(index, 1)
+      state.channels.unshift(channel)
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -42,6 +50,6 @@ export const channelsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addChannel } = channelsSlice.actions
+export const { addChannel, updateChannel } = channelsSlice.actions
 
 export default channelsSlice.reducer

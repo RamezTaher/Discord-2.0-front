@@ -27,7 +27,7 @@ export const MessagesContainerBody = styled.div`
 export const MessageContainerStyle = styled.div`
   height: 100%;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 30px 0 15px;
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
@@ -74,7 +74,7 @@ export const MessageItemAvatar = styled.div`
 export const MessageItemDetails = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 `
 
 export const MessageItemHeader = styled.div`

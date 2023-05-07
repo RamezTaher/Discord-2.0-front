@@ -11,10 +11,7 @@ import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 
-type Props = {
-  messages: IMessage[]
-}
-const Message = ({ messages }: Props) => {
+const Message = () => {
   const { user } = useContext(AuthContext)
   const { id } = useParams()
   const channelMessages = useSelector(

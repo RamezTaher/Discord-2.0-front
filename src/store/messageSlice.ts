@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { IChannelMessages } from "../@types"
 import { getChannelMessages } from "../utils/api-interceptor"
+import { ISendMessage } from "../@types/sendMessage"
 
 export interface MessagesState {
   messages: IChannelMessages[]
@@ -23,7 +24,13 @@ export const messagesSlice = createSlice({
   name: "messages",
   initialState,
   reducers: {
-    addMessage: (state) => {},
+    addMessage: (state, action: PayloadAction<ISendMessage>) => {
+      console.log(state)
+      console.log(action)
+      const { channel, ...message } = action.payload
+      const channelMessages = state.messages.find((cm) => cm.id === channel.id)
+      channelMessages?.messages.unshift(message)
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMessagesThunk.fulfilled, (state, action) => {

@@ -10,7 +10,7 @@ import { getChannelMessages } from "../utils/api-interceptor"
 import { ChannelStyle } from "../utils/styles"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
-import { fetchMessagesThunk } from "../store/messageSlice"
+import { addMessage, fetchMessagesThunk } from "../store/messageSlice"
 
 const Channel = () => {
   const { user } = useContext(AuthContext)
@@ -29,7 +29,7 @@ const Channel = () => {
     socket.on("connected", () => console.log("Connected"))
     socket.on("onMessage", (payload: ISendMessage) => {
       const { channel, ...messageContent } = payload
-      setMessages((prev) => [messageContent, ...prev])
+      dispatch(addMessage(payload))
     })
     return () => {
       socket.off("connected")
@@ -39,7 +39,7 @@ const Channel = () => {
 
   return (
     <ChannelStyle>
-      <MessagesContainer messages={messages} />
+      <MessagesContainer />
     </ChannelStyle>
   )
 }

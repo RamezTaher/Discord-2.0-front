@@ -7,10 +7,7 @@ import { useParams } from "react-router-dom"
 import { postNewMessage } from "../../utils/api-interceptor"
 import { IMessage } from "../../@types"
 
-type Props = {
-  messages: IMessage[]
-}
-const MessagesContainer = ({ messages }: Props) => {
+const MessagesContainer = () => {
   const [messageContent, setMessageContent] = useState("")
   const { id } = useParams()
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +29,7 @@ const MessagesContainer = ({ messages }: Props) => {
       <MessagesContainerStyle>
         <MessagesContainerHeader />
         <MessagesContainerBody>
-          <Message messages={messages} />
+          <Message />
           <MessageInputField
             messageContent={messageContent}
             setMessageContent={setMessageContent}

@@ -29,7 +29,7 @@ const Channel = () => {
   useEffect(() => {
     socket.on("connected", () => console.log("Connected"))
     socket.on("onMessage", (payload: ISendMessage) => {
-      const { channel, ...messageContent } = payload
+      const { channel, message } = payload
       dispatch(addMessage(payload))
       dispatch(updateChannel(channel))
     })

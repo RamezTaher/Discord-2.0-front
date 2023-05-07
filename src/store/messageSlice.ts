@@ -27,7 +27,7 @@ export const messagesSlice = createSlice({
     addMessage: (state, action: PayloadAction<ISendMessage>) => {
       console.log(state)
       console.log(action)
-      const { channel, ...message } = action.payload
+      const { channel, message } = action.payload
       const channelMessages = state.messages.find((cm) => cm.id === channel.id)
       channelMessages?.messages.unshift(message)
     },

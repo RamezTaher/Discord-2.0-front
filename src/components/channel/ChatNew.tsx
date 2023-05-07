@@ -16,7 +16,7 @@ const ChatNew = ({ setIsModelOpen }: Props) => {
   return (
     <>
       <Overlay ref={overlayRef} onClick={closeModal}>
-        <NewChatModal />
+        <NewChatModal setIsModelOpen={setIsModelOpen} />
       </Overlay>
     </>
   )

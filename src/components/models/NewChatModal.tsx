@@ -13,31 +13,52 @@ import {
 import styles from "./index.module.scss"
 
 import { useDispatch } from "react-redux"
-import { addChannel } from "../../store/channelSlice"
+import { addChannel, createChannelThunk } from "../../store/channelSlice"
+import { useForm } from "react-hook-form"
+import { ICreateChannel } from "../../@types/createChannel"
+import { AppDispatch } from "../../store"
 
-const NewChatModal = () => {
+type Props = {
+  setIsModelOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+const NewChatModal = ({ setIsModelOpen }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ICreateChannel>({})
+  const dispatch = useDispatch<AppDispatch>()
+
+  const onSubmit = (data: ICreateChannel) => {
+    dispatch(createChannelThunk(data))
+      .then((data) => {
+        setIsModelOpen(false)
+      })
+      .catch((err) => console.log(err))
+  }
   return (
     <ModalContainer>
       <ModalHeader>
         <h1 className={styles.modelTitle}>Create a conversation</h1>
       </ModalHeader>
       <ModalBody>
-        <form className={styles.modelForm}>
+        <form className={styles.modelForm} onSubmit={handleSubmit(onSubmit)}>
           <InputContainer>
-            <InputLabel htmlFor="username">Type the username</InputLabel>
-            <InputField id="username" type="text" />
+            <InputLabel htmlFor="username">Type the Email</InputLabel>
+            <InputField
+              id="username"
+              type="text"
+              {...register("email", { required: "Email is required" })}
+            />
           </InputContainer>
           <InputContainer>
             <InputLabel htmlFor="message">Message</InputLabel>
-            <TextAreaField id="message" />
+            <TextAreaField
+              id="message"
+              {...register("message", { required: "Message is required" })}
+            />
           </InputContainer>
-          <Button
-            onClick={(e) => {
-              e.preventDefault()
-            }}
-          >
-            Start Conversation
-          </Button>
+          <Button>Start Conversation</Button>
         </form>
       </ModalBody>
     </ModalContainer>

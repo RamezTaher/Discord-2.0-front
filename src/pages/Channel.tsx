@@ -27,7 +27,9 @@ const Channel = () => {
   }, [id])
 
   useEffect(() => {
-    socket.on("connected", () => console.log("Connected"))
+    socket.emit("onClientConnect", {
+      channelId: parseInt(id!),
+    })
     socket.on("onMessage", (payload: ISendMessage) => {
       const { channel, message } = payload
       dispatch(addMessage(payload))
@@ -37,11 +39,16 @@ const Channel = () => {
       socket.off("connected")
       socket.off("onMessage")
     }
-  }, [])
+  }, [id])
+
+  const sendTypingStatus = () => {
+    console.log("You are typing")
+    socket.emit("onUserTyping", { channelId: id })
+  }
 
   return (
     <ChannelStyle>
-      <MessagesContainer />
+      <MessagesContainer sendTypingStatus={sendTypingStatus} />
     </ChannelStyle>
   )
 }

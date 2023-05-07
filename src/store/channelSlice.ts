@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { IChannel, IChannelMessages, IMessage } from "../@types"
-import { getChannels } from "../utils/api-interceptor"
+import { createNewConversation, getChannels } from "../utils/api-interceptor"
 import { getChannelMessages } from "../utils/api-interceptor"
+import { ICreateChannel } from "../@types/createChannel"
 
 export interface ChannelsState {
   channels: IChannel[]
@@ -18,6 +19,13 @@ export const fetchChannelsThunk = createAsyncThunk(
   "channels/fetch",
   async () => {
     return getChannels()
+  }
+)
+
+export const createChannelThunk = createAsyncThunk(
+  "conversations/create",
+  async (data: ICreateChannel) => {
+    return createNewConversation(data)
   }
 )
 
@@ -45,6 +53,10 @@ export const channelsSlice = createSlice({
       })
       .addCase(fetchChannelsThunk.pending, (state, action) => {
         state.loading = true
+      })
+      .addCase(createChannelThunk.fulfilled, (state, action) => {
+        console.log(action.payload.data)
+        state.channels.unshift(action.payload.data)
       })
   },
 })

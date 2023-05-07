@@ -8,6 +8,7 @@ import {
 } from "../@types"
 import { ISendMessage } from "../@types/sendMessage"
 import { ICreateMessage } from "../@types/createMessage"
+import { ICreateChannel } from "../@types/createChannel"
 
 const API_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -30,6 +31,9 @@ export const getChannels = () =>
 
 export const getChannelMessages = (id: number) =>
   axios.get<IChannelMessages>(`${API_URL}/messages/${id}`, config)
+
+export const createNewConversation = (data: ICreateChannel) =>
+  axios.post<IChannel>(`${API_URL}/channels`, data, config)
 
 // Messages
 

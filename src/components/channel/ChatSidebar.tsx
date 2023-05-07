@@ -21,6 +21,7 @@ const ChatSidebar = ({}: Props) => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const { user } = useContext(AuthContext)
   const channels = useSelector((state: RootState) => state.channel.channels)
+  console.log(channels)
   const getTheOtherSideOfChannel = (channel: IChannel) => {
     return channel.sender.id === user?.id ? channel.receiver : channel.sender
   }

@@ -35,7 +35,7 @@ export const channelsSlice = createSlice({
   initialState,
   reducers: {
     addChannel: (state, action: PayloadAction<IChannel>) => {
-      console.log("Add Channel")
+      state.channels.unshift(action.payload)
     },
 
     updateChannel: (state, action: PayloadAction<IChannel>) => {

@@ -1,9 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { IChannel, IChannelMessages, IMessage } from "../@types"
 import { createNewConversation, getChannels } from "../utils/api-interceptor"
 import { getChannelMessages } from "../utils/api-interceptor"
 import { ICreateChannel } from "../@types/createChannel"
+import { RootState } from "."
 
 export interface ChannelsState {
   channels: IChannel[]
@@ -60,6 +61,14 @@ export const channelsSlice = createSlice({
       })
   },
 })
+
+const selectChannels = (state: RootState) => state.channel.channels
+const selectChannelId = (state: RootState, id: number) => id
+
+export const selectChannelById = createSelector(
+  [selectChannels, selectChannelId],
+  (channels, channelId) => channels.find((c) => c.id === channelId)
+)
 
 // Action creators are generated for each case reducer function
 export const { addChannel, updateChannel } = channelsSlice.actions

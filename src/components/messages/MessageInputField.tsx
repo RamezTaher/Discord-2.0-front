@@ -13,12 +13,14 @@ export const MessageInputField = ({
   sendMessage,
   sendTypingStatus,
 }: Props) => {
+  const updateMessageContent = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setMessageContent(e.target.value)
   return (
     <MessageInputContainer>
       <form onSubmit={sendMessage}>
         <MessageInput
           value={messageContent}
-          onChange={(e) => setMessageContent(e.target.value)}
+          onChange={updateMessageContent}
           onKeyDown={sendTypingStatus}
         />
       </form>

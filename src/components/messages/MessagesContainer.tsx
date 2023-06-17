@@ -20,7 +20,7 @@ const MessagesContainer = ({ sendTypingStatus }: Props) => {
     const channelId = parseInt(id)
 
     try {
-      await postNewMessage({ channelId, messageContent })
+      await postNewMessage(channelId, { messageContent })
       setMessageContent("")
     } catch (err) {
       console.log(err)

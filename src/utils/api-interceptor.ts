@@ -29,13 +29,13 @@ export const getAuth = () => api.get<IUser>(`/auth/me`, config)
 export const getChannels = () =>
   axios.get<IChannel[]>(`${API_URL}/channels`, config)
 
-export const getChannelMessages = (id: number) =>
-  axios.get<IChannelMessages>(`${API_URL}/messages/${id}`, config)
-
 export const createNewConversation = (data: ICreateChannel) =>
   axios.post<IChannel>(`${API_URL}/channels`, data, config)
 
 // Messages
 
-export const postNewMessage = (data: ICreateMessage) =>
-  axios.post(`${API_URL}/messages`, data, config)
+export const postNewMessage = (channelId: number, data: ICreateMessage) =>
+  axios.post(`${API_URL}/channels/${channelId}/messages`, data, config)
+
+export const getChannelMessages = (id: number) =>
+  axios.get<IChannelMessages>(`${API_URL}/channels/${id}/messages`, config)

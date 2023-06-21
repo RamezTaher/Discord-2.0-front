@@ -1,6 +1,5 @@
-import styled from "styled-components"
-import { CHAT_SIDEBAR_WIDTH } from "../../utils/styles"
-import { MessageItemContentProps } from "./styleTypes"
+import styled, { css } from "styled-components"
+import { MessageItemContentProps, MessageOptionsProps } from "./styleTypes"
 
 export const MessagesContainerStyle = styled.div`
   height: 100%;
@@ -108,4 +107,29 @@ export const MessagesContainerHeaderStyle = styled.header`
   left: 0;
   width: 100%;
   color: #fff;
+`
+
+export const MessageOptionsStyle = styled.div<MessageOptionsProps>`
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: fixed;
+  width: 200px;
+  background-color: #252525;
+  ${(props) => css`
+    top: ${props.top}px;
+    left: ${props.left}px;
+  `}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+  }
+  ul li {
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+  ul li:hover {
+    cursor: pointer;
+    background-color: #1f1f1f;
+  }
 `

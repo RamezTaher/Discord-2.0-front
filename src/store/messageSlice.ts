@@ -1,7 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { IChannelMessages } from "../@types"
-import { getChannelMessages } from "../utils/api-interceptor"
+import { deleteMessage, getChannelMessages } from "../utils/api-interceptor"
 import { ISendMessage } from "../@types/sendMessage"
+import { IDeleteMessage } from "../@types/deleteMessage"
 
 export interface MessagesState {
   messages: IChannelMessages[]
@@ -17,6 +18,13 @@ export const fetchMessagesThunk = createAsyncThunk(
   "messages/fetch",
   (id: number) => {
     return getChannelMessages(id)
+  }
+)
+
+export const deleteMessageThunk = createAsyncThunk(
+  "messages/delete",
+  (params: IDeleteMessage) => {
+    return deleteMessage(params)
   }
 )
 

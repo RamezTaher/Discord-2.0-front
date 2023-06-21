@@ -9,6 +9,7 @@ import {
 import { ISendMessage } from "../@types/sendMessage"
 import { ICreateMessage } from "../@types/createMessage"
 import { ICreateChannel } from "../@types/createChannel"
+import { IDeleteMessage } from "../@types/deleteMessage"
 
 const API_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -39,3 +40,6 @@ export const postNewMessage = (channelId: number, data: ICreateMessage) =>
 
 export const getChannelMessages = (id: number) =>
   axios.get<IChannelMessages>(`${API_URL}/channels/${id}/messages`, config)
+
+export const deleteMessage = ({ channelId, messageId }: IDeleteMessage) =>
+  axios.delete(`${API_URL}/channels/${channelId}/messages/${messageId}`, config)

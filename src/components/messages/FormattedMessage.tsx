@@ -12,10 +12,11 @@ import { IMessage, IUser } from "../../@types"
 type Props = {
   user?: IUser
   message: IMessage
+  onMessageOptions: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
-const FormattedMessage = ({ user, message }: Props) => {
+const FormattedMessage = ({ user, message, onMessageOptions }: Props) => {
   return (
-    <MessageItemContainer>
+    <MessageItemContainer onMessageOptions={onMessageOptions}>
       <MessageItemAvatar />
       <MessageItemDetails>
         <MessageItemHeader>

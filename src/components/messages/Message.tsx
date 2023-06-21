@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import {
   MessageContainerStyle,
   MessageItemContainer,
@@ -14,11 +14,26 @@ import { RootState } from "../../store"
 const Message = () => {
   const { user } = useContext(AuthContext)
   const { id } = useParams()
+  const [showMessageOptions, setShowMessageOptions] = useState(false)
+  const [points, setPoints] = useState({ x: 0, y: 0 })
+  const [selectedMessage, setSelectedMessage] = useState<IMessage | null>(null)
   const channelMessages = useSelector(
     (state: RootState) => state.messages.messages
   )
+
+  const onMessageOptions = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    message: IMessage
+  ) => {
+    e.preventDefault()
+    setShowMessageOptions(true)
+    setPoints({ x: e.pageX, y: e.pageY })
+    setSelectedMessage(message)
+  }
   useEffect(() => {
-    console.log(id)
+    const handleClick = () => setShowMessageOptions(false)
+    window.addEventListener("click", handleClick)
+    return () => window.removeEventListener("click", handleClick)
   }, [])
 
   const formatMessages = () => {
@@ -30,18 +45,35 @@ const Message = () => {
       const nextMessage = messagesArray[nextMessageIdx]
       if (messagesArray.length === idx + 1) {
         // last msg
-        return <FormattedMessage key={idx} user={user} message={message} />
+        return (
+          <FormattedMessage
+            onMessageOptions={(e) => onMessageOptions(e, message)}
+            key={idx}
+            user={user}
+            message={message}
+          />
+        )
       }
       if (currentMessage.sender.id === nextMessage.sender.id) {
         return (
-          <MessageItemContainer key={idx}>
+          <MessageItemContainer
+            onMessageOptions={(e) => onMessageOptions(e, message)}
+            key={idx}
+          >
             <MessageItemContent padding="0 0 0 70px">
               {message.messageContent}
             </MessageItemContent>
           </MessageItemContainer>
         )
       }
-      return <FormattedMessage key={idx} user={user} message={message} />
+      return (
+        <FormattedMessage
+          onMessageOptions={(e) => onMessageOptions(e, message)}
+          key={idx}
+          user={user}
+          message={message}
+        />
+      )
     })
   }
 

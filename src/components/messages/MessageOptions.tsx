@@ -11,7 +11,7 @@ type Props = {
   points: { x: number; y: number }
 }
 
-export const SelectedMessageContextMenu: FC<Props> = ({ points }) => {
+export const MessageOptions: FC<Props> = ({ points }) => {
   const { message } = useContext(MessageOptionsContext)
   const { id } = useParams()
   const { user } = useContext(AuthContext)

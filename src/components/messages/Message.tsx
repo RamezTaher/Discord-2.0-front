@@ -3,6 +3,7 @@ import {
   MessageContainerStyle,
   MessageItemContainer,
   MessageItemContent,
+  MessageOptionsStyle,
 } from "."
 import { IMessage } from "../../@types/message"
 import { AuthContext } from "../../context/AuthContext"
@@ -10,6 +11,8 @@ import FormattedMessage from "./FormattedMessage"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
+import { MessageOptionsContext } from "../../context/MessageOptionsContext"
+import { MessageOptions } from "./MessageOptions"
 
 const Message = () => {
   const { user } = useContext(AuthContext)
@@ -57,7 +60,7 @@ const Message = () => {
       if (currentMessage.sender.id === nextMessage.sender.id) {
         return (
           <MessageItemContainer
-            onMessageOptions={(e) => onMessageOptions(e, message)}
+            onClick={(e) => onMessageOptions(e, message)}
             key={idx}
           >
             <MessageItemContent padding="0 0 0 70px">
@@ -80,7 +83,14 @@ const Message = () => {
   useEffect(() => {
     formatMessages()
   }, [])
-  return <MessageContainerStyle>{formatMessages()}</MessageContainerStyle>
+  return (
+    <MessageOptionsContext.Provider
+      value={{ message: selectedMessage, setMessage: setSelectedMessage }}
+    >
+      <MessageContainerStyle> {formatMessages()}</MessageContainerStyle>
+      {showMessageOptions && <MessageOptions points={points} />}
+    </MessageOptionsContext.Provider>
+  )
 }
 
 export default Message

@@ -1,5 +1,5 @@
 import { formatRelative } from "date-fns"
-import React from "react"
+import React, { FC } from "react"
 import {
   MessageItemAvatar,
   MessageItemContainer,
@@ -14,9 +14,9 @@ type Props = {
   message: IMessage
   onMessageOptions: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
-const FormattedMessage = ({ user, message, onMessageOptions }: Props) => {
+const FormattedMessage: FC<Props> = ({ user, message, onMessageOptions }) => {
   return (
-    <MessageItemContainer onMessageOptions={onMessageOptions}>
+    <MessageItemContainer onClick={onMessageOptions}>
       <MessageItemAvatar />
       <MessageItemDetails>
         <MessageItemHeader>

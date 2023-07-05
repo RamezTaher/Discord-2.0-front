@@ -60,7 +60,6 @@ export const MessageItemContainer = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
-  padding: 5px 0;
 `
 
 export const MessageItemAvatar = styled.div`
@@ -74,6 +73,7 @@ export const MessageItemDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
 `
 
 export const MessageItemHeader = styled.div`
@@ -92,6 +92,24 @@ export const MessageItemHeader = styled.div`
 
 export const MessageItemContent = styled.div<MessageItemContentProps>`
   padding: ${({ padding }) => padding};
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.6;
+  position: relative;
+`
+
+export const MessagesOptions = styled.div`
+  position: absolute;
+  height: fit-content;
+  top: 50%;
+  right: 2px;
+  background-color: white;
+  padding: 2px 6px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 `
 
 export const MessagesContainerHeaderStyle = styled.header`

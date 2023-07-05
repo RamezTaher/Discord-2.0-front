@@ -1,22 +1,35 @@
 import { formatRelative } from "date-fns"
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import {
   MessageItemAvatar,
   MessageItemContainer,
   MessageItemContent,
   MessageItemDetails,
   MessageItemHeader,
+  MessagesOptions,
 } from "."
 import { IMessage, IUser } from "../../@types"
+import { AiTwotoneWarning } from "react-icons/ai"
 
 type Props = {
   user?: IUser
   message: IMessage
-  onMessageOptions: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
-const FormattedMessage: FC<Props> = ({ user, message, onMessageOptions }) => {
+const FormattedMessage: FC<Props> = ({ user, message }) => {
+  const [showMessageOptions, setShowMessageOptions] = useState<boolean>(false)
+  const handleShow = () => {
+    setShowMessageOptions(true)
+  }
+  const handleHide = () => {
+    setShowMessageOptions(false)
+  }
+
   return (
-    <MessageItemContainer onClick={onMessageOptions}>
+    <MessageItemContainer
+      onMouseEnter={handleShow}
+      onMouseLeave={handleHide}
+      style={{ marginTop: "10px" }}
+    >
       <MessageItemAvatar />
       <MessageItemDetails>
         <MessageItemHeader>
@@ -32,8 +45,13 @@ const FormattedMessage: FC<Props> = ({ user, message, onMessageOptions }) => {
             {formatRelative(new Date(message.sentAt), new Date())}
           </span>
         </MessageItemHeader>
-        <MessageItemContent padding="8px 0 0 0">
+        <MessageItemContent>
           {message.messageContent}
+          {showMessageOptions && (
+            <MessagesOptions>
+              <div>Delete</div>
+            </MessagesOptions>
+          )}
         </MessageItemContent>
       </MessageItemDetails>
     </MessageItemContainer>

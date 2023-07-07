@@ -12,20 +12,33 @@ import FormattedMessage from "./FormattedMessage"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
+import { MessageOptions } from "./MessageOptions"
+import { MessageOptionsContext } from "../../context/MessageOptionsContext"
 
 const Message = () => {
   const { user } = useContext(AuthContext)
   const { id } = useParams()
+  const [showMenu, setShowMenu] = useState(false)
+  const [points, setPoints] = useState({ x: 0, y: 0 })
+  const [selectedMessage, setSelectedMessage] = useState<IMessage | null>(null)
   const channelMessages = useSelector(
     (state: RootState) => state.messages.messages
   )
-  const [showMessageOptions, setShowMessageOptions] = useState<boolean>(false)
-  const handleShow = () => {
-    setShowMessageOptions(true)
+
+  const onContextMenu = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    message: IMessage
+  ) => {
+    e.preventDefault()
+    setShowMenu(true)
+    setPoints({ x: e.pageX, y: e.pageY })
+    setSelectedMessage(message)
   }
-  const handleHide = () => {
-    setShowMessageOptions(false)
-  }
+  useEffect(() => {
+    const handleClick = () => setShowMenu(false)
+    window.addEventListener("click", handleClick)
+    return () => window.removeEventListener("click", handleClick)
+  }, [])
 
   const formatMessages = () => {
     const msgs = channelMessages.find((cm) => cm.id === parseInt(id!))
@@ -36,34 +49,51 @@ const Message = () => {
       const nextMessage = messagesArray[nextMessageIdx]
       if (messagesArray.length === idx + 1) {
         // last msg
-        return <FormattedMessage key={idx} user={user} message={message} />
+        return (
+          <FormattedMessage
+            onContextMenu={(e) => onContextMenu(e, message)}
+            key={idx}
+            user={user}
+            message={message}
+          />
+        )
       }
       if (currentMessage.sender.id === nextMessage.sender.id) {
         return (
           <MessageItemContainer
             key={idx}
-            onMouseEnter={handleShow}
-            onMouseLeave={handleHide}
+            onContextMenu={(e) => onContextMenu(e, message)}
           >
             <MessageItemContent padding="0 30px 0 70px">
               {message.messageContent}
-              {showMessageOptions && (
-                <MessagesOptions>
-                  <div>Delete</div>
-                </MessagesOptions>
-              )}
             </MessageItemContent>
           </MessageItemContainer>
         )
       }
-      return <FormattedMessage key={idx} user={user} message={message} />
+      return (
+        <FormattedMessage
+          onContextMenu={(e) => onContextMenu(e, message)}
+          key={idx}
+          user={user}
+          message={message}
+        />
+      )
     })
   }
 
   useEffect(() => {
     formatMessages()
   }, [])
-  return <MessageContainerStyle> {formatMessages()}</MessageContainerStyle>
+  return (
+    <MessageOptionsContext.Provider
+      value={{ message: selectedMessage, setMessage: setSelectedMessage }}
+    >
+      <MessageContainerStyle>
+        {formatMessages()}
+        {showMenu && <MessageOptions points={points} />}
+      </MessageContainerStyle>
+    </MessageOptionsContext.Provider>
+  )
 }
 
 export default Message

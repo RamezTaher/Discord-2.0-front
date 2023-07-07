@@ -14,20 +14,12 @@ import { AiTwotoneWarning } from "react-icons/ai"
 type Props = {
   user?: IUser
   message: IMessage
+  onContextMenu: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
-const FormattedMessage: FC<Props> = ({ user, message }) => {
-  const [showMessageOptions, setShowMessageOptions] = useState<boolean>(false)
-  const handleShow = () => {
-    setShowMessageOptions(true)
-  }
-  const handleHide = () => {
-    setShowMessageOptions(false)
-  }
-
+const FormattedMessage: FC<Props> = ({ user, message, onContextMenu }) => {
   return (
     <MessageItemContainer
-      onMouseEnter={handleShow}
-      onMouseLeave={handleHide}
+      onContextMenu={onContextMenu}
       style={{ marginTop: "10px" }}
     >
       <MessageItemAvatar />
@@ -45,14 +37,7 @@ const FormattedMessage: FC<Props> = ({ user, message }) => {
             {formatRelative(new Date(message.sentAt), new Date())}
           </span>
         </MessageItemHeader>
-        <MessageItemContent>
-          {message.messageContent}
-          {showMessageOptions && (
-            <MessagesOptions>
-              <div>Delete</div>
-            </MessagesOptions>
-          )}
-        </MessageItemContent>
+        <MessageItemContent>{message.messageContent}</MessageItemContent>
       </MessageItemDetails>
     </MessageItemContainer>
   )

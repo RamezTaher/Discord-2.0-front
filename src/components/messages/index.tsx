@@ -125,14 +125,20 @@ export const MessagesContainerHeaderStyle = styled.header`
   left: 0;
   width: 100%;
   color: #fff;
+  z-index: 5;
 `
 
 export const MessageOptionsStyle = styled.div<MessageOptionsProps>`
   border-radius: 8px;
   box-sizing: border-box;
   position: fixed;
-  width: 200px;
-  background-color: #252525;
+  width: 170px;
+  color: #fff;
+  font-weight: 500;
+  background-color: #2f3136;
+  box-shadow: 2px 2px 13px 1px rgba(189, 171, 171, 0.75);
+  -webkit-box-shadow: 2px 2px 13px 1px rgba(189, 171, 171, 0.75);
+  -moz-box-shadow: 2px 2px 13px 1px rgba(189, 171, 171, 0.75);
   ${(props) => css`
     top: ${props.top}px;
     left: ${props.left}px;
@@ -148,6 +154,6 @@ export const MessageOptionsStyle = styled.div<MessageOptionsProps>`
   }
   ul li:hover {
     cursor: pointer;
-    background-color: #1f1f1f;
+    background-color: #383a40;
   }
 `

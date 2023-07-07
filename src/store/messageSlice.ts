@@ -1,6 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { IChannelMessages } from "../@types"
-import { deleteMessage, getChannelMessages } from "../utils/api-interceptor"
+import {
+  deleteMessage as deleteMessageAPI,
+  getChannelMessages,
+} from "../utils/api-interceptor"
 import { ISendMessage } from "../@types/sendMessage"
 import { IDeleteMessage } from "../@types/deleteMessage"
 
@@ -24,7 +27,7 @@ export const fetchMessagesThunk = createAsyncThunk(
 export const deleteMessageThunk = createAsyncThunk(
   "messages/delete",
   (params: IDeleteMessage) => {
-    return deleteMessage(params)
+    return deleteMessageAPI(params)
   }
 )
 
@@ -33,11 +36,21 @@ export const messagesSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action: PayloadAction<ISendMessage>) => {
-      console.log(state)
-      console.log(action)
       const { channel, message } = action.payload
       const channelMessages = state.messages.find((cm) => cm.id === channel.id)
       channelMessages?.messages.unshift(message)
+    },
+    deleteMessage: (state, action: PayloadAction<IDeleteMessage>) => {
+      console.log("Inside deleteMessage reducer")
+      const { payload } = action
+      const channelMessages = state.messages.find(
+        (cm) => cm.id === payload.channelId
+      )
+      if (!channelMessages) return
+      const messageIndex = channelMessages.messages.findIndex(
+        (m) => m.id === payload.messageId
+      )
+      channelMessages.messages.splice(messageIndex, 1)
     },
   },
   extraReducers: (builder) => {
@@ -55,6 +68,6 @@ export const messagesSlice = createSlice({
   },
 })
 
-export const { addMessage } = messagesSlice.actions
+export const { addMessage, deleteMessage } = messagesSlice.actions
 
 export default messagesSlice.reducer

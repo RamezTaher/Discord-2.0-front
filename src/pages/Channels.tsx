@@ -7,10 +7,15 @@ import ChatDefault from "../components/channel/ChatDefault"
 import { useEffect, useState, useContext } from "react"
 import { IChannel } from "../@types"
 import { AppDispatch, RootState } from "../store"
-import { addChannel, fetchChannelsThunk, updateChannel } from "../store/channelSlice"
+import {
+  addChannel,
+  fetchChannelsThunk,
+  updateChannel,
+} from "../store/channelSlice"
 import { SocketContext } from "../context/SocketContext"
 import { ISendMessage } from "../@types/sendMessage"
-import { addMessage } from "../store/messageSlice"
+import { addMessage, deleteMessage } from "../store/messageSlice"
+import { IDeleteMessage } from "../@types/deleteMessage"
 const Channels = () => {
   const { id } = useParams()
   const dispatch = useDispatch<AppDispatch>()
@@ -37,15 +42,22 @@ const Channels = () => {
       dispatch(addMessage(payload))
       dispatch(updateChannel(channel))
     })
+    socket.on("onMessageDelete", (payload) => {
+      console.log("Message Deleted")
+      console.log(payload)
+      dispatch(deleteMessage(payload))
+    })
     socket.on("onConversation", (payload: IChannel) => {
       console.log("Received onConversation Event")
       console.log(payload)
       dispatch(addChannel(payload))
     })
+
     return () => {
       socket.off("connected")
       socket.off("onMessage")
       socket.off("onConversation")
+      socket.off("onMessageDelete")
     }
   }, [id])
   return (

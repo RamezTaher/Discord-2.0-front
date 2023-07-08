@@ -1,41 +1,78 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { IUser } from "../@types"
-import { IMessage } from "../@types/message"
-import { ISendMessage } from "../@types/sendMessage"
+
 import MessagesContainer from "../components/messages/MessagesContainer"
-import { AuthContext } from "../context/AuthContext"
 import { SocketContext } from "../context/SocketContext"
-import { getChannelMessages } from "../utils/api-interceptor"
 import { ChannelStyle } from "../utils/styles"
-import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../store"
-import { addMessage, fetchMessagesThunk } from "../store/messageSlice"
-import { updateChannel } from "../store/channelSlice"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../store"
+import { fetchMessagesThunk } from "../store/messageSlice"
 
 const Channel = () => {
-  const { user } = useContext(AuthContext)
   const { id } = useParams()
-  const [messages, setMessages] = useState<IMessage[]>([])
   const socket = useContext(SocketContext)
-  const channels = useSelector((state: RootState) => state.channel.channels)
   const dispatch = useDispatch<AppDispatch>()
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>()
+  const [isTyping, setIsTyping] = useState<boolean>(false)
+  const [isReceiverTyping, setIsReceiverTyping] = useState<boolean>(false)
 
   useEffect(() => {
     const channelId = parseInt(id!)
     dispatch(fetchMessagesThunk(channelId))
   }, [id])
 
- 
+  useEffect(() => {
+    const channelId = id!
+    socket.emit("OnChannelJoin", { channelId })
+    socket.on("userJoin", () => {
+      console.log("userJoin")
+    })
+    socket.on("userLeave", () => {
+      console.log("userLeave")
+    })
+
+    socket.on("onTypingStart", () => {
+      console.log("onTypingStart: User has started typing...")
+      setIsReceiverTyping(true)
+    })
+
+    socket.on("onTypingStop", () => {
+      console.log("onTypingStop: User has stopped typing...")
+      setIsReceiverTyping(false)
+    })
+
+    return () => {
+      socket.emit("onChannelLeave", { channelId })
+      socket.off("userJoin")
+      socket.off("userLeave")
+      socket.off("onTypingStart")
+      socket.off("onTypingStop")
+    }
+  }, [id])
 
   const sendTypingStatus = () => {
-    console.log("You are typing")
-    socket.emit("onUserTyping", { channelId: id })
+    if (isTyping) {
+      clearTimeout(timer)
+      setTimer(
+        setTimeout(() => {
+          console.log("User stopped typing")
+          socket.emit("onTypingStop", { channelId: id })
+          setIsTyping(false)
+        }, 1500)
+      )
+    } else {
+      console.log("isTyping = false")
+      setIsTyping(true)
+      socket.emit("onTypingStart", { channelId: id })
+    }
   }
 
   return (
     <ChannelStyle>
-      <MessagesContainer sendTypingStatus={sendTypingStatus} />
+      <MessagesContainer
+        sendTypingStatus={sendTypingStatus}
+        isReceiverTyping={isReceiverTyping}
+      />
     </ChannelStyle>
   )
 }

@@ -20,6 +20,7 @@ type Props = {
   isReceiverTyping: boolean
 }
 const MessagesContainer = ({ sendTypingStatus, isReceiverTyping }: Props) => {
+  console.log(isReceiverTyping)
   const [messageContent, setMessageContent] = useState("")
   const { id } = useParams()
   const { user } = useContext(AuthContext)

@@ -30,13 +30,6 @@ const Channels = () => {
   }, [])
 
   useEffect(() => {
-    socket.emit("onClientConnect", {
-      channelId: parseInt(id!),
-    })
-    socket.on("connected", (data) => {
-      console.log("Connected to Websocket")
-      console.log(data)
-    })
     socket.on("onMessage", (payload: ISendMessage) => {
       const { channel, message } = payload
       dispatch(addMessage(payload))
@@ -54,7 +47,6 @@ const Channels = () => {
     })
 
     return () => {
-      socket.off("connected")
       socket.off("onMessage")
       socket.off("onConversation")
       socket.off("onMessageDelete")

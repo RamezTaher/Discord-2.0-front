@@ -24,13 +24,15 @@ export const MessageOptions: FC<Props> = ({ points }) => {
     dispatch(deleteMessageThunk({ channelId, messageId: message.id }))
   }
   return (
-    <MessageOptionsStyle top={points.y} left={points.x}>
-      <ul>
-        {message?.sender.id === user?.id && (
-          <li onClick={deleteMessage}>Delete</li>
-        )}
-        {message?.sender.id === user?.id && <li>Edit</li>}
-      </ul>
-    </MessageOptionsStyle>
+    <>
+      {message?.sender.id === user?.id && (
+        <MessageOptionsStyle top={points.y} left={points.x}>
+          <ul>
+            <li onClick={deleteMessage}>Delete</li>
+            <li>Edit</li>
+          </ul>
+        </MessageOptionsStyle>
+      )}
+    </>
   )
 }

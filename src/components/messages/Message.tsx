@@ -64,7 +64,7 @@ const Message = () => {
             key={idx}
             onContextMenu={(e) => onContextMenu(e, message)}
           >
-            <MessageItemContent padding="0 30px 0 70px">
+            <MessageItemContent padding="0 30px 0 65px">
               {message.messageContent}
             </MessageItemContent>
           </MessageItemContainer>

@@ -157,3 +157,12 @@ export const MessageOptionsStyle = styled.div<MessageOptionsProps>`
     background-color: #383a40;
   }
 `
+
+export const MessageTypingStatus = styled.div`
+  width: 100%;
+  font-size: 15px;
+  color: #adadad;
+  box-sizing: border-box;
+  margin-top: 10px;
+  height: 20px;
+`

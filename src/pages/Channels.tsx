@@ -15,7 +15,6 @@ import {
 import { SocketContext } from "../context/SocketContext"
 import { ISendMessage } from "../@types/sendMessage"
 import { addMessage, deleteMessage } from "../store/messageSlice"
-import { IDeleteMessage } from "../@types/deleteMessage"
 const Channels = () => {
   const { id } = useParams()
   const dispatch = useDispatch<AppDispatch>()

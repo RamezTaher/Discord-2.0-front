@@ -23,7 +23,7 @@ const Channel = () => {
 
   useEffect(() => {
     const channelId = id!
-    socket.emit("OnChannelJoin", { channelId })
+    socket.emit("onChannelJoin", { channelId })
     socket.on("userJoin", () => {
       console.log("userJoin")
     })
@@ -32,12 +32,10 @@ const Channel = () => {
     })
 
     socket.on("onTypingStart", () => {
-      console.log("onTypingStart: User has started typing...")
       setIsReceiverTyping(true)
     })
 
     socket.on("onTypingStop", () => {
-      console.log("onTypingStop: User has stopped typing...")
       setIsReceiverTyping(false)
     })
 
@@ -58,10 +56,9 @@ const Channel = () => {
           console.log("User stopped typing")
           socket.emit("onTypingStop", { channelId: id })
           setIsTyping(false)
-        }, 1500)
+        }, 700)
       )
     } else {
-      console.log("isTyping = false")
       setIsTyping(true)
       socket.emit("onTypingStart", { channelId: id })
     }

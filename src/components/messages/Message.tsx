@@ -62,7 +62,6 @@ const Message = () => {
 
   useEffect(() => {
     return () => {
-      console.log("Unmounting")
       setSelectedMessage(null)
       setSelectedEditMessage(null)
       setIsEditing(false)

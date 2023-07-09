@@ -1,4 +1,4 @@
-import { FC, useContext } from "react"
+import { Dispatch, FC, SetStateAction, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { AppDispatch } from "../../store"
@@ -9,17 +9,22 @@ import { deleteMessageThunk } from "../../store/messageSlice"
 
 type Props = {
   points: { x: number; y: number }
+  setIsEditing: Dispatch<SetStateAction<boolean>>
 }
 
-export const MessageOptions: FC<Props> = ({ points }) => {
-  const { message } = useContext(MessageOptionsContext)
+export const MessageOptions: FC<Props> = ({ points, setIsEditing }) => {
+  const { message, setEditMessage } = useContext(MessageOptionsContext)
   const { id } = useParams()
   const { user } = useContext(AuthContext)
   const dispatch = useDispatch<AppDispatch>()
 
+  const editMessage = () => {
+    setIsEditing(true)
+    setEditMessage(message)
+  }
+
   const deleteMessage = () => {
     const channelId = parseInt(id!)
-    console.log(`Delete message ${message?.id}`)
     if (!message) return
     dispatch(deleteMessageThunk({ channelId, messageId: message.id }))
   }
@@ -29,7 +34,7 @@ export const MessageOptions: FC<Props> = ({ points }) => {
         <MessageOptionsStyle top={points.y} left={points.x}>
           <ul>
             <li onClick={deleteMessage}>Delete</li>
-            <li>Edit</li>
+            <li onClick={editMessage}>Edit</li>
           </ul>
         </MessageOptionsStyle>
       )}

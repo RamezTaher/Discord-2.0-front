@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { IChannelMessages } from "../@types"
+import { IChannelMessages, IMessage } from "../@types"
 import {
   deleteMessage as deleteMessageAPI,
   editMessage as editMessageAPI,
@@ -61,6 +61,19 @@ export const messagesSlice = createSlice({
       )
       channelMessages.messages.splice(messageIndex, 1)
     },
+
+    editMessage: (state, action: PayloadAction<IMessage>) => {
+      console.log("editMessageReducer")
+      const message = action.payload
+      const channelMessages = state.messages.find(
+        (cm) => cm.id === message.channel.id
+      )
+      if (!channelMessages) return
+      const messageIndex = channelMessages.messages.findIndex(
+        (m) => m.id === message.id
+      )
+      channelMessages.messages[messageIndex] = message
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -102,6 +115,6 @@ export const messagesSlice = createSlice({
   },
 })
 
-export const { addMessage, deleteMessage } = messagesSlice.actions
+export const { addMessage, deleteMessage, editMessage } = messagesSlice.actions
 
 export default messagesSlice.reducer

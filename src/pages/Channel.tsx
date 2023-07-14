@@ -6,7 +6,7 @@ import { SocketContext } from "../context/SocketContext"
 import { ChannelStyle } from "../utils/styles"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../store"
-import { fetchMessagesThunk } from "../store/messageSlice"
+import { editMessage, fetchMessagesThunk } from "../store/messageSlice"
 
 const Channel = () => {
   const { id } = useParams()
@@ -38,6 +38,11 @@ const Channel = () => {
     socket.on("onTypingStop", () => {
       setIsReceiverTyping(false)
     })
+    socket.on("onMessageUpdate", (message) => {
+      console.log("onMessageUpdate received")
+      console.log(message)
+      dispatch(editMessage(message))
+    })
 
     return () => {
       socket.emit("onChannelLeave", { channelId })
@@ -45,6 +50,7 @@ const Channel = () => {
       socket.off("userLeave")
       socket.off("onTypingStart")
       socket.off("onTypingStop")
+      socket.off("onMessageUpdate")
     }
   }, [id])
 

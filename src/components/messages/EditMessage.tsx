@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { Dispatch, FC, SetStateAction } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { AppDispatch } from "../../store"
@@ -11,10 +11,12 @@ import { IEditMessage } from "../../@types/editMessage"
 type Props = {
   selectedEditMessage: IMessage
   onEditMessageChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setIsEditing: Dispatch<SetStateAction<boolean>>
 }
 export const EditMessage: FC<Props> = ({
   selectedEditMessage,
   onEditMessageChange,
+  setIsEditing,
 }) => {
   const dispatch = useDispatch<AppDispatch>()
   const { id } = useParams()
@@ -28,6 +30,13 @@ export const EditMessage: FC<Props> = ({
       messageContent: selectedEditMessage.messageContent,
     }
     dispatch(editMessageThunk(params))
+      .then(() => {
+        setIsEditing(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setIsEditing(false)
+      })
   }
   return (
     <div style={{ width: "100%" }}>

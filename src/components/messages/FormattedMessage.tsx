@@ -1,5 +1,5 @@
 import { formatRelative } from "date-fns"
-import React, { FC, useState } from "react"
+import React, { Dispatch, FC, SetStateAction, useState } from "react"
 import {
   MessageItemAvatar,
   MessageItemContainer,
@@ -19,6 +19,7 @@ type Props = {
   isEditing: boolean
   selectedEditMessage: IMessage | null
   onEditMessageChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setIsEditing: Dispatch<SetStateAction<boolean>>
 }
 const FormattedMessage: FC<Props> = ({
   user,
@@ -27,6 +28,7 @@ const FormattedMessage: FC<Props> = ({
   isEditing,
   selectedEditMessage,
   onEditMessageChange,
+  setIsEditing,
 }) => {
   return (
     <MessageItemContainer
@@ -53,6 +55,7 @@ const FormattedMessage: FC<Props> = ({
             <EditMessage
               selectedEditMessage={selectedEditMessage}
               onEditMessageChange={onEditMessageChange}
+              setIsEditing={setIsEditing}
             />
           </MessageItemContent>
         ) : (

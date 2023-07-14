@@ -42,9 +42,10 @@ const Message = () => {
   }
 
   const onEditMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(selectedEditMessage)
     if (!selectedEditMessage) return
     setSelectedEditMessage(
-      (prev) => prev && { ...prev, content: e.target.value }
+      (prev) => prev && { ...prev, messageContent: e.target.value }
     )
   }
   useEffect(() => {
@@ -86,6 +87,7 @@ const Message = () => {
             isEditing={isEditing}
             selectedEditMessage={selectedEditMessage}
             onEditMessageChange={onEditMessageChange}
+            setIsEditing={setIsEditing}
           />
         )
       }
@@ -100,6 +102,7 @@ const Message = () => {
                 <EditMessage
                   selectedEditMessage={selectedEditMessage}
                   onEditMessageChange={onEditMessageChange}
+                  setIsEditing={setIsEditing}
                 />
               </MessageItemContent>
             ) : (
@@ -119,6 +122,7 @@ const Message = () => {
           isEditing={isEditing}
           selectedEditMessage={selectedEditMessage}
           onEditMessageChange={onEditMessageChange}
+          setIsEditing={setIsEditing}
         />
       )
     })

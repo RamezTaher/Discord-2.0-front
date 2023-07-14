@@ -63,17 +63,42 @@ export const messagesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchMessagesThunk.fulfilled, (state, action) => {
-      const { id, messages } = action.payload.data
-      const index = state.messages.findIndex((cm) => cm.id === id)
-      const exists = state.messages.find((cm) => cm.id === id)
-      if (exists) {
-        console.log("exists")
-        state.messages[index] = action.payload.data
-      } else {
-        state.messages.push(action.payload.data)
-      }
-    })
+    builder
+      .addCase(fetchMessagesThunk.fulfilled, (state, action) => {
+        const { id, messages } = action.payload.data
+        const index = state.messages.findIndex((cm) => cm.id === id)
+        const exists = state.messages.find((cm) => cm.id === id)
+        if (exists) {
+          console.log("exists")
+          state.messages[index] = action.payload.data
+        } else {
+          state.messages.push(action.payload.data)
+        }
+      })
+      .addCase(deleteMessageThunk.fulfilled, (state, action) => {
+        const { data } = action.payload
+        const channelMessages = state.messages.find(
+          (cm) => cm.id === data.conversationId
+        )
+        if (!channelMessages) return
+        const messageIndex = channelMessages.messages.findIndex(
+          (m) => m.id === data.messageId
+        )
+        channelMessages?.messages.splice(messageIndex, 1)
+      })
+      .addCase(editMessageThunk.fulfilled, (state, action) => {
+        console.log("editMessageThunk.fulfilled")
+        const { data: message } = action.payload
+        const { id } = message.channel
+        const channelMessages = state.messages.find((cm) => cm.id === id)
+        if (!channelMessages) return
+        const messageIndex = channelMessages.messages.findIndex(
+          (m) => m.id === message.id
+        )
+        console.log(messageIndex)
+        channelMessages.messages[messageIndex] = message
+        console.log("Updated Message")
+      })
   },
 })
 

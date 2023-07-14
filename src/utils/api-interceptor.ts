@@ -4,6 +4,7 @@ import {
   IChannelMessages,
   ICreateUser,
   ILogUser,
+  IMessage,
   IUser,
 } from "../@types"
 import { ISendMessage } from "../@types/sendMessage"
@@ -50,7 +51,7 @@ export const editMessage = ({
   channelId,
   messageId,
 }: IEditMessage) =>
-  axios.patch(
+  axios.patch<IMessage>(
     `${API_URL}/channels/${channelId}/messages/${messageId}`,
     { messageContent },
     config

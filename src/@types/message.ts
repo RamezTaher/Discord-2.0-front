@@ -1,3 +1,4 @@
+import { IChannel } from "./channel"
 import { IUser } from "./user"
 
 export interface IMessage {
@@ -5,4 +6,5 @@ export interface IMessage {
   sender: IUser
   messageContent: string
   sentAt: string
+  channel: IChannel
 }

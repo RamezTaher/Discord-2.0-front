@@ -172,7 +172,7 @@ export const EditMessageInputField = styled.input`
   border: none;
   background-color: #222;
   color: #bababa;
-  font-family: "Inter";
+  font-family: "Poppins";
   box-sizing: border-box;
   font-size: 15px;
   padding: 18px 22px;

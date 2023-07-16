@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
-import { ILogUser } from "../../utils/@types"
 import { postLogUser } from "../../utils/api-interceptor"
 import {
   InputField,
@@ -11,6 +10,7 @@ import {
   FormTitle,
 } from "../../utils/styles"
 import styles from "./index.module.scss"
+import { ILogUser } from "../../@types"
 
 const LoginForm = () => {
   const {

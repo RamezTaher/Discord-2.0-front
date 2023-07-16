@@ -1,7 +1,6 @@
 import React from "react"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
-import { ICreateUser } from "../../utils/@types"
+import { Link, useNavigate } from "react-router-dom"
 import { postRegisterUser } from "../../utils/api-interceptor"
 import {
   InputField,
@@ -11,6 +10,7 @@ import {
   FormTitle,
 } from "../../utils/styles"
 import styles from "./index.module.scss"
+import { ICreateUser } from "../../@types"
 
 const RegisterForm = () => {
   const {
@@ -18,11 +18,13 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ICreateUser>()
+  const navigate = useNavigate()
 
   const submitHundler = async (data: ICreateUser) => {
     console.log(data)
     try {
       await postRegisterUser(data)
+      navigate("/login")
     } catch (error) {
       console.log(error)
     }

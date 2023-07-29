@@ -2,7 +2,7 @@
 
 This is the frontend for the [Discord Clone Nest](https://github.com/RamezTaher/Discord-2.0-back) project.
 
-## Setting up the Backend
+## Setting up the Frontend env
 
 1. Clone the repository.
 2. Run `yarn install` to install dependencies.

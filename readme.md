@@ -1,6 +1,6 @@
 # Discord Clone UI
 
-This is the backend for the [Discord Clone Nest](https://github.com/RamezTaher/Discord-2.0-back) project.
+This is the frontend for the [Discord Clone Nest](https://github.com/RamezTaher/Discord-2.0-back) project.
 
 ## Setting up the Backend
 

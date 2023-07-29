@@ -60,15 +60,14 @@ export const NavButton = styled.div`
 `
 
 export const HeroShowcaseContainer = styled.div`
-  padding 120px 40px;
+  padding: 120px 40px;
   z-index: 1;
   width: 100%;
-    max-width: 1260px;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    gap: 0 20px;
-   
+  max-width: 1260px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0 20px;
 `
 export const HeroShowcaseBody = styled.div`
   grid-column: 3 / span 8;

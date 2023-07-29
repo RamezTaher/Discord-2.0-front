@@ -1,30 +1,96 @@
-.authForm {
-  width: 600px;
-  background-color: #36393f;
-  padding: 45px 35px !important;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin: auto;
+form {
+  width: 800px;
 }
 
-.nameSection {
+.nameFieldRow {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 8px 0;
+  gap: 8px;
+}
+
+.footerText {
+  & :last-child {
+    text-decoration: underline;
+    color: rgb(184, 184, 184);
+  }
+  margin: 10px 0;
+  text-align: center;
+}
+
+.button {
+  margin: 8px 0;
+}
+
+.loginFormPassword {
+  margin: 8px 0;
+}
+
+.createConversationForm {
+  width: 100%;
+}
+
+.message {
+  margin: 8px 0;
+}
+
+.conversationTypeForm {
+  display: flex;
   gap: 20px;
-  & > * {
-    width: 100%;
+  padding-bottom: 10px;
+}
+.radio {
+  display: none;
+  &:hover + .radioLabel::before {
+    background-color: #000;
+  }
+  &:checked + .radioLabel::before {
+    content: '\2714';
+    color: rgb(193, 193, 193);
+    background-color: #2b09ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-.exitedUser {
-  color: #079eda;
-  font-size: 14px;
-  margin-top: -7px;
+.radioLabel {
   cursor: pointer;
-  width: fit-content;
-  &:hover {
-    text-decoration: underline;
+  display: flex;
+  align-items: center;
+  &::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2b09ff;
+    border-radius: 5px;
+    margin-right: 8px;
   }
+}
+
+.onboardingInput {
+  margin: 8px 0;
+}
+
+.onboardingLabel {
+  font-size: 16px;
+}
+
+.onboardingForm {
+  width: 500px;
+}
+
+.passwordContainer {
+  display: flex;
+  align-items: center;
+}
+
+.updateUserStatusForm {
+  width: 100%;
+}
+.updateStatusFormButtons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
 }

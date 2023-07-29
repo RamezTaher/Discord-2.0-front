@@ -1,0 +1,25 @@
+.groupName {
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.groupLastMessage {
+  font-size: 14px;
+  color: rgb(163, 163, 163);
+}
+.groupAvatar {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+}
+
+.defaultGroupAvatar {
+  background-color: rgb(36, 36, 36);
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
